@@ -33,10 +33,11 @@
 </template>
 
 <script setup>
-import { menus } from '@/utils/data.js'
 import { useRouter } from 'vue-router'
-const $router = useRouter()
+import {getTools} from '@/tools'
+const menus = getTools()
 
+const $router = useRouter()
 const routerJump = (menu) => {
     $router.push(menu.path)
 }

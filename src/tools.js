@@ -1,16 +1,15 @@
-export const menus = [
+const tools = [
     {
         title: '办公工具',
         // icon: 'WindowsOutlined',
         icon: 'icon-bangong',
         path: '/office',
-        component: '/layout/index',
         children: [
             {
                 title: '思维导图',
                 icon: 'icon-siweidaotu',
-                path: '/mind',
-                component: '/pages/ai/idphotos'
+                path: '/mindmap',
+                component: '/pages/office/mindmap'
             },
         ]
     },
@@ -19,7 +18,6 @@ export const menus = [
         // icon: 'BulbOutlined',
         icon: 'icon-wuguan',
         path: '/ai',
-        component: '/layout/index',
         children: [
             {
                 title: '生成证件照',
@@ -33,14 +31,14 @@ export const menus = [
                 // icon: 'ItalicOutlined',
                 icon: 'icon-voice',
                 path: '/emotivoice',
-                component: '/ai/idphotos'
+                component: '/pages/ai/emotivoice'
             },
             {
                 title: '文本转图片',
                 // icon: 'FileImageOutlined',
                 icon: 'icon-image',
                 path: '/fooocus',
-                component: '/ai/idphotos'
+                component: '/pages/ai/fooocus'
             }
         ]
     },
@@ -52,3 +50,7 @@ export const menus = [
         component: '/ai/idphotos'
     }
 ]
+
+export const getTools = () => {
+    return tools
+}
