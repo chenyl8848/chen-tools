@@ -1,6 +1,6 @@
 <template>
     <a-layout style="min-height: 100vh">
-        <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
+        <a-layout-sider v-model:collapsed="settingStore.collapsed" :trigger="null" collapsible>
             <sidebar></sidebar>
         </a-layout-sider>
         <a-layout>
@@ -11,7 +11,7 @@
                 <router-view></router-view>
             </a-layout-content>
             <a-layout-footer style="text-align: center">
-                Ant Design ©2018 Created by Ant UED
+                Chen Tools ©2024 Created by <a href="https://github.com/chenyl8848" target="_blank">Java陈序员</a>
             </a-layout-footer>
         </a-layout>
     </a-layout>
@@ -19,9 +19,8 @@
 <script setup>
 import Sidebar from './Sidebar/index.vue'
 import Navbar from './Navbar/index.vue'
-import { ref } from 'vue';
-
-const collapsed = ref(false)
+import useSettingStore from '@/store/module/setting'
+const settingStore = useSettingStore()
 
 </script>
 <style lang="scss">

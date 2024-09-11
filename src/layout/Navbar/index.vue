@@ -1,21 +1,21 @@
 <template>
     <div class="navbar">
         <a-tooltip placement="bottom" title="折叠">
-            <a-button type="text" shape="circle" class="btn-block" size="large" v-if="!collapsed" @click="collapseMenu">
+            <a-button type="text" shape="circle" class="btn-block" size="large" v-if="!settingStore.collapsed" @click="collapseMenu">
                 <template #icon>
                     <MenuFoldOutlined />
                 </template>
             </a-button>
         </a-tooltip>
         <a-tooltip placement="bottom" title="展开">
-            <a-button type="text" shape="circle" class="btn-block" size="large" v-if="collapsed" @click="collapseMenu">
+            <a-button type="text" shape="circle" class="btn-block" size="large" v-if="settingStore.collapsed" @click="collapseMenu">
                 <template #icon>
                     <MenuUnfoldOutlined />
                 </template>
             </a-button>
         </a-tooltip>
         <a-tooltip placement="bottom" title="主页">
-            <a-button type="text" shape="circle" class="btn-block" size="large">
+            <a-button type="text" shape="circle" class="btn-block" size="large" @click="goHome">
                 <template #icon>
                     <HomeOutlined />
                 </template>
@@ -31,28 +31,28 @@
             </template>
         </a-input>
         <a-tooltip placement="bottom" title="关于本站">
-            <a-button type="text" shape="circle" class="btn-block" size="large">
+            <a-button type="text" shape="circle" class="btn-block" size="large" @click="goAbout">
                 <template #icon>
                     <InfoCircleOutlined />
                 </template>
             </a-button>
         </a-tooltip>
         <a-tooltip placement="bottom" title="留言反馈">
-            <a-button type="text" shape="circle" class="btn-block" size="large">
+            <a-button type="text" shape="circle" class="btn-block" size="large" @click="goIssue">
                 <template #icon>
                     <CommentOutlined />
                 </template>
             </a-button>
         </a-tooltip>
         <a-tooltip placement="bottom" title="仓库地址">
-            <a-button type="text" shape="circle" class="btn-block" size="large">
+            <a-button type="text" shape="circle" class="btn-block" size="large" @click="goGithub">
                 <template #icon>
                     <GithubOutlined />
                 </template>
             </a-button>
         </a-tooltip>
         <a-tooltip placement="bottom" title="打赏作者">
-            <a-button type="text" shape="circle" class="btn-block" size="large">
+            <a-button type="text" shape="circle" class="btn-block" size="large" @click="goReward">
                 <template #icon>
                     <CoffeeOutlined />
                 </template>
@@ -80,19 +80,52 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from 'vue'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router';
+import useSettingStore from '@/store/module/setting'
+const $router = useRouter()
 
-const $emits = defineEmits('collapseMenu')
-const collapsed = ref(false)
+const settingStore = useSettingStore()
 const collapseMenu = () => {
-    collapsed.value = !collapsed.value
-    $emits('collapseMenu')
+    settingStore.collapseMenu()
+}
+
+const goHome = () => {
+    $router.push("/")
+}
+
+const goAbout = () => {
+    $router.push("/about")
+}
+
+const goIssue = () => {
+    $router.push("/issue")
+}
+
+const goGithub = () => {
+    window.open("https://github.com/chenyl8848/chen-tools")
+}
+
+const goReward = () => {
+    $router.push('/reward')
+}
+
+const handleMenuClick = (data) => {
+    switch (data.key) {
+        case '1':
+            window.open('https://chenyl8848.github.io/')
+            break
+        case '2':
+            window.open('https://chencoding.top:8090/#/')
+            break
+    }
 }
 
 const keyword = ref('')
 const onSearch = () => {
     console.log(keyword, "keyworddddddddddd")
 }
+
 </script>
 
 <style lang="scss" scoped>

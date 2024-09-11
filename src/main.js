@@ -11,6 +11,8 @@ const IconFont = createFromIconfontCN({
     scriptUrl: '//at.alicdn.com/t/c/font_4676471_khjdqx1arrp.js'
 })
 
+import store from './store'
+
 const app = createApp(App)
 // app.use(router)
 // app.use(Antd)
@@ -37,6 +39,8 @@ const startApp = async () => {
         app.component(key, Icon)
     })
     app.component('IconFont', IconFont)
+    
+    app.use(store)
     app.mount('#app')
 }
 

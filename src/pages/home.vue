@@ -1,12 +1,22 @@
 <template>
-    <div v-for="item in 4">
-        <p class="tool-title">AI 工具</p>
+    <div v-for="item1 in tools">
+        <p class="tool-title">{{ item1.title }}</p>
         <div class="box">
-            <a-card v-for="item in 6" hoverable @click="toolClick" :loading="loading">
+            <a-card v-for="item2 in item1.children" hoverable @click="toolClick(item2)" :loading="loading">
                 <template #title>
-                    <a-card-meta title="Card title">
+                    <a-card-meta :title="item2.title" :description="item1.title">
                         <template #avatar>
-                            <a-avatar src="https://joeschmoe.io/api/v1/random" />
+                            <!-- <icon-font :type="item2.icon" />
+                            <a-badge count="5">
+                                <a-avatar src="https://tools.ranblogs.com/images/logo/keywords.png" size="small"/>
+                            </a-badge> -->
+                            <!-- <a-avatar src="https://tools.ranblogs.com/images/logo/Time.png" size=""/> -->
+                            <a-badge :dot="true" status="success">
+                                <!-- <a-avatar src="https://tools.ranblogs.com/images/logo/Time.png" shape="square"
+                                    size="large" /> -->
+                                <a-avatar :src="item2.favicon" shape="square"
+                                    size="large" />
+                            </a-badge>
                         </template>
                     </a-card-meta>
                 </template>
@@ -19,7 +29,8 @@
                         </a-button>
                     </a-tooltip>
                     <a-tooltip placement="bottom" title="取消收藏">
-                        <a-button type="text" shape="circle" class="btn-block" size="large" v-if="false" @click.stop="cancelFavorite">
+                        <a-button type="text" shape="circle" class="btn-block" size="large" v-if="false"
+                            @click.stop="cancelFavorite">
                             <template #icon>
                                 <icon :style="{ color: 'black' }">
                                     <template #component>
@@ -33,7 +44,7 @@
                         </a-button>
                     </a-tooltip>
                 </template>
-                <p class="box-description">card content</p>
+                <p class="box-description">{{ item2.description }}</p>
             </a-card>
         </div>
     </div>
@@ -42,11 +53,17 @@
 <script setup>
 import Icon from '@ant-design/icons-vue'
 import { ref } from 'vue'
+import { getTools } from '@/tools'
+import { useRouter } from 'vue-router';
+const $router = useRouter()
 
 const loading = ref(false)
-const toolClick = () => {
-    console.log("tooooooooooooooooo")
+const toolClick = (tool) => {
+    console.log(tool, "tooooooooooooooooo")
+    $router.push(tool.path)
 }
+
+const tools = getTools().filter((item) => item.children)
 
 const addFavorite = () => {
     console.log("addFavorite")
@@ -68,7 +85,7 @@ const cancelFavorite = () => {
     display: flex;
     // 换行
     flex-wrap: wrap;
-    
+
     .ant-card {
         // width: 25%;
         width: calc((100% - 64px) / 4);
@@ -77,15 +94,33 @@ const cancelFavorite = () => {
         margin-right: 16px;
         margin-bottom: 16px;
         border-radius: 24px;
-        
+
+        .ant-card-head {
+            min-height: 75px;
+        }
+
+        .ant-card-meta-avatar {
+            width: 75px;
+            padding-inline-end: 0px;
+            margin: 12px 0px;
+            text-align: center;
+        }
+
+
         .ant-card-meta-title {
             font-weight: 700;
+            font-size: 20px;
+        }
+
+        .ant-card-meta-description {
+            font-weight: 700;
+            font-size: 14px;
         }
     }
 
     .box-description {
         // font-weight: 700;
-        font-size: 20px;
+        font-size: 18px;
     }
 }
 </style>

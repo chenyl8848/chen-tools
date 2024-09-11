@@ -1,6 +1,10 @@
 <template>
     <div class="logo">
-        <span>logo</span>
+        <router-link to="/">
+            <img src="/src/assets/images/chen-tools.png" v-if="!settingStore.collapsed"/>
+            <img src="/src/assets/images/tools.png" v-else/>
+        </router-link>
+        <!-- <img src="/src/assets/images/chen-tools.png" @click="goHome" /> -->
     </div>
     <a-menu mode="inline">
         <template v-for="menu in menus">
@@ -34,7 +38,10 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import {getTools} from '@/tools'
+import useSettingStore from '@/store/module/setting'
+const settingStore = useSettingStore()
+
+import { getTools } from '@/tools'
 const menus = getTools()
 
 const $router = useRouter()
@@ -48,6 +55,11 @@ const routerJump = (menu) => {
     height: 72px;
     // margin: 16px;
     // background-color: #409eff;
+
+    img {
+        width: 100%;
+        height: 72px;
+    }
 }
 
 .ant-menu {
@@ -63,6 +75,10 @@ const routerJump = (menu) => {
 .ant-menu .ant-menu-item .anticon,
 .ant-menu .ant-menu-submenu-title .anticon,
 .ant-menu .ant-menu-title .anticon {
+    font-size: 16px;
+}
+
+.ant-menu-title-content {
     font-size: 16px;
 }
 </style>
