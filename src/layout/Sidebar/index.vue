@@ -1,8 +1,8 @@
 <template>
     <div class="logo">
         <router-link to="/">
-            <img src="/src/assets/images/chen-tools.png" v-if="!settingStore.collapsed"/>
-            <img src="/src/assets/images/tools.png" v-else/>
+            <img src="/src/assets/images/chen-tools.svg" v-if="!settingStore.collapsed"/>
+            <img src="/src/assets/images/tools.svg" v-else/>
         </router-link>
         <!-- <img src="/src/assets/images/chen-tools.png" @click="goHome" /> -->
     </div>
@@ -79,6 +79,6 @@ const routerJump = (menu) => {
 }
 
 .ant-menu-title-content {
-    font-size: 16px;
+    font-size: 14px;
 }
 </style>

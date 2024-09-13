@@ -13,6 +13,22 @@ const tools = [
                 path: '/mindmap',
                 component: '/pages/office/mindmap'
             },
+            {
+                title: '在线表格',
+                description: "Excel 在线表格",
+                icon: 'icon-Excel',
+                favicon: '/src/assets/images/excel.svg',
+                path: '/excel',
+                component: '/pages/office/excel'
+            },
+            {
+                title: '流程图',
+                description: "流程图、ER图、BPMN流程",
+                icon: 'icon-liuchengtu',
+                favicon: '/src/assets/images/flow.svg',
+                path: '/logicflow',
+                component: '/pages/office/logicflow'
+            },
         ]
     },
     {
@@ -47,11 +63,51 @@ const tools = [
             },
             {
                 title: '文本转语音',
-                description: "强大的文本转语音工具，支持中英文双语",
+                description: "文本转语音，支持中英文双语",
                 icon: 'icon-voice',
                 favicon: '/src/assets/images/voice.png',
                 path: '/emotivoice',
                 component: '/pages/ai/emotivoice'
+            },
+        ]
+    },
+    {
+        title: '自媒体工具',
+        // icon: 'BulbOutlined',
+        icon: 'icon-lanmuzimeiti',
+        path: '/media',
+        children: [
+            {
+                title: '抖音去水印下载',
+                description: "抖音去水印批量下载用户主页作品",
+                icon: 'icon-douyin',
+                favicon: '/src/assets/images/douyin.svg',
+                path: '/movie',
+                component: '/pages/media/douyin'
+            }
+        ]
+    },
+    {
+        title: '其他工具',
+        // icon: 'BulbOutlined',
+        icon: 'icon-qita',
+        path: '/other',
+        children: [
+            {
+                title: '抽奖工具',
+                description: "大转盘/九宫格/老虎机",
+                icon: 'icon-choujiang',
+                favicon: '/src/assets/images/lottery.svg',
+                path: '/lottery',
+                component: '/pages/other/lottery'
+            },
+            {
+                title: '亲戚称谓计算器',
+                description: "大转盘/九宫格/老虎机",
+                icon: 'icon-jisuanqilishuai',
+                favicon: '/src/assets/images/calculator.svg',
+                path: '/relatives',
+                component: '/pages/other/relative'
             },
         ]
     },
@@ -63,13 +119,13 @@ const tools = [
     },
     {
         title: '打赏作者',
-        icon: 'icon-comment-outlined',
+        icon: 'icon-dashang',
         path: '/reward',
         component: '/pages/reward'
     },
     {
         title: '留言反馈',
-        icon: 'icon-comment-outlined',
+        icon: 'icon-liuyanfankui',
         path: '/issue',
         component: '/pages/issue'
     }

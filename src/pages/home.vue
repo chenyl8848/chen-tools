@@ -100,16 +100,16 @@ const cancelFavorite = () => {
         }
 
         .ant-card-meta-avatar {
-            width: 75px;
+            width: 50px;
             padding-inline-end: 0px;
-            margin: 12px 0px;
+            margin: 12px 6px 12px 0px;
             text-align: center;
         }
 
 
         .ant-card-meta-title {
             font-weight: 700;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .ant-card-meta-description {
@@ -120,7 +120,7 @@ const cancelFavorite = () => {
 
     .box-description {
         // font-weight: 700;
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 </style>
