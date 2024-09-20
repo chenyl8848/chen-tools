@@ -8,7 +8,7 @@ import { initRoutes } from '@/utils/permission'
 
 import { createFromIconfontCN } from '@ant-design/icons-vue'
 const IconFont = createFromIconfontCN({
-    scriptUrl: '//at.alicdn.com/t/c/font_4676471_rx2tbkemxxi.js'
+    scriptUrl: '//at.alicdn.com/t/c/font_4676471_fxrqvcf1rs5.js'
 })
 
 import store from './store'

@@ -12,12 +12,12 @@ const useToolStore = defineStore('Tool', () => {
         if (favoriteTools.value.length > 0) {
             let favoriteTool = {
                 title: '我的收藏',
-                icon: 'icon-wendanggongju',
+                icon: 'icon-shoucang',
                 path: '/favorite',
                 children: favoriteTools.value
             }
             regularTools.unshift(favoriteTool)
-            
+
             regularTools.forEach((item1) => {
                 item1.children.forEach((item2) => {
                     let index = favoriteTools.value.findIndex((item3) => item3.path === item2.path)
