@@ -1,9 +1,23 @@
 const tools = [
     {
-        title: '办公工具',
-        // icon: 'WindowsOutlined',
-        icon: 'icon-bangong',
-        path: '/office',
+        title: '文档工具',
+        icon: 'icon-wendanggongju',
+        path: '/document',
+        children: [
+            {
+                title: '在线表格',
+                description: "Excel 在线表格",
+                icon: 'icon-Excel',
+                favicon: '/src/assets/images/excel.svg',
+                path: '/excel',
+                component: '/pages/document/excel'
+            }
+        ]
+    },
+    {
+        title: '作图工具',
+        icon: 'icon-xianxingliangzhicaozuotubiao',
+        path: '/image',
         children: [
             {
                 title: '思维导图',
@@ -11,15 +25,7 @@ const tools = [
                 icon: 'icon-siweidaotu',
                 favicon: '/src/assets/images/xmind.png',
                 path: '/mindmap',
-                component: '/pages/office/mindmap'
-            },
-            {
-                title: '在线表格',
-                description: "Excel 在线表格",
-                icon: 'icon-Excel',
-                favicon: '/src/assets/images/excel.svg',
-                path: '/excel',
-                component: '/pages/office/excel'
+                component: '/pages/image/mindmap'
             },
             {
                 title: '流程图',
@@ -27,7 +33,15 @@ const tools = [
                 icon: 'icon-liuchengtu',
                 favicon: '/src/assets/images/flow.svg',
                 path: '/logicflow',
-                component: '/pages/office/logicflow'
+                component: '/pages/image/logicflow'
+            },
+            {
+                title: '手绘白板',
+                description: "虚拟白板，用于勾画手绘般的图表",
+                icon: 'icon-liuchengtu',
+                favicon: '/src/assets/images/whiteboard.svg',
+                path: '/whiteboard',
+                component: '/pages/image/whiteboard'
             },
         ]
     },

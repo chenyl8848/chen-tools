@@ -167,14 +167,11 @@ onMounted(() => {
     position: fixed;
     top: 180px;
     z-index: 1000;
-    // margin-left: 50%;
     right: 100px;
-    // float: right;
 
     .ant-card .ant-card-body {
         padding: 0%;
         display: flex;
-        // flex-direction: column;
 
         .btn-block {
             margin-top: 12px;
