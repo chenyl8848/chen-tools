@@ -7,7 +7,7 @@
         <!-- <img src="/src/assets/images/chen-tools.png" @click="goHome" /> -->
     </div>
     <a-menu mode="inline">
-        <template v-for="menu in menus">
+        <template v-for="menu in toolStore.tools">
             <template v-if="!menu.children && !menu.isHidden">
                 <a-menu-item :key="menu.path" @click="routerJump(menu)">
                     <icon-font :type="menu.icon" />
@@ -40,9 +40,11 @@
 import { useRouter } from 'vue-router'
 import useSettingStore from '@/store/module/setting'
 const settingStore = useSettingStore()
+import useToolStore from '@/store/module/tool'
+const toolStore = useToolStore()
 
-import { getTools } from '@/tools'
-const menus = getTools()
+// import { getTools } from '@/tools'
+// const menus = getTools()
 
 const $router = useRouter()
 const routerJump = (menu) => {

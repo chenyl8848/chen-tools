@@ -1,5 +1,5 @@
 <template>
-    <div v-for="item1 in tools">
+    <div v-for="item1 in toolStore.tools">
         <p class="tool-title">{{ item1.title }}</p>
         <div class="box">
             <a-card v-for="item2 in item1.children" hoverable @click="toolClick(item2)" :loading="loading">
@@ -14,23 +14,23 @@
                             <a-badge :dot="true" status="success">
                                 <!-- <a-avatar src="https://tools.ranblogs.com/images/logo/Time.png" shape="square"
                                     size="large" /> -->
-                                <a-avatar :src="item2.favicon" shape="square"
-                                    size="large" />
+                                <a-avatar :src="item2.favicon" shape="square" size="large" />
                             </a-badge>
                         </template>
                     </a-card-meta>
                 </template>
                 <template #extra>
                     <a-tooltip placement="bottom" title="加入收藏">
-                        <a-button type="text" shape="circle" class="btn-block" size="large" @click.stop="addFavorite">
+                        <a-button type="text" shape="circle" class="btn-block" size="large"
+                            @click.stop="addFavorite(item2)" v-if="!item2.favorite">
                             <template #icon>
                                 <HeartOutlined />
                             </template>
                         </a-button>
                     </a-tooltip>
                     <a-tooltip placement="bottom" title="取消收藏">
-                        <a-button type="text" shape="circle" class="btn-block" size="large" v-if="false"
-                            @click.stop="cancelFavorite">
+                        <a-button type="text" shape="circle" class="btn-block" size="large" v-if="item2.favorite"
+                            @click.stop="cancelFavorite(item2)">
                             <template #icon>
                                 <icon :style="{ color: 'black' }">
                                     <template #component>
@@ -53,24 +53,24 @@
 <script setup>
 import Icon from '@ant-design/icons-vue'
 import { ref } from 'vue'
-import { getTools } from '@/tools'
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
+import useToolStore from '@/store/module/tool'
+
 const $router = useRouter()
 
 const loading = ref(false)
 const toolClick = (tool) => {
-    console.log(tool, "tooooooooooooooooo")
     $router.push(tool.path)
 }
 
-const tools = getTools().filter((item) => item.children)
+const toolStore = useToolStore()
 
-const addFavorite = () => {
-    console.log("addFavorite")
+const addFavorite = (tool) => {
+    toolStore.addFavorite(tool)
 }
 
-const cancelFavorite = () => {
-    console.log("cancelFavorite")
+const cancelFavorite = (tool) => {
+    toolStore.removeFavorite(tool)
 }
 </script>
 
