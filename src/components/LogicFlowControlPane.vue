@@ -1,88 +1,168 @@
 <template>
     <div>
         <a-button-group>
-            <a-button size="small" @click="zoomIn">放大</a-button>
-            <a-button size="small" @click="zoomOut">缩小</a-button>
-            <a-button size="small" @click="zoomReset">大小适应</a-button>
-            <a-button size="small" @click="translateReset">定位还原</a-button>
-            <a-button size="small" @click="undo" :disabled="undoDisable">上一步(ctrl+z)</a-button>
-            <a-button size="small" @click="redo" :disabled="redoDisable">下一步(ctrl+y)</a-button>
-            <a-button size="small" @click="download">下载图片</a-button>
-            <a-button type="primary" size="small" :disabled="submitDisable" @click="submit">提交</a-button>
+            <a-tooltip placement="bottom">
+                <template #title>
+                    <span>放大</span>
+                </template>
+                <a-button :icon="h(ZoomInOutlined)" @click="zoomIn" size="large" />
+            </a-tooltip>
+            <a-tooltip placement="bottom">
+                <template #title>
+                    <span>缩小</span>
+                </template>
+                <a-button :icon="h(ZoomOutOutlined)" @click="zoomOut" size="large" />
+            </a-tooltip>
+            <a-tooltip placement="bottom">
+                <template #title>
+                    <span>大小适应</span>
+                </template>
+                <a-button :icon="h(FullscreenOutlined)" @click="zoomReset" size="large" />
+            </a-tooltip>
+            <a-tooltip placement="bottom">
+                <template #title>
+                    <span>定位还原</span>
+                </template>
+                <a-button :icon="h(FullscreenExitOutlined)" @click="translateReset" size="large" />
+            </a-tooltip>
+            <a-tooltip placement="bottom">
+                <template #title>
+                    <span>上一步(Ctrl + Z)</span>
+                </template>
+                <a-button :icon="h(ArrowLeftOutlined)" @click="undo" size="large" />
+            </a-tooltip>
+            <a-tooltip placement="bottom">
+                <template #title>
+                    <span>下一步(Ctrl + Y)</span>
+                </template>
+                <a-button :icon="h(ArrowRightOutlined)" @click="redo" size="large" />
+            </a-tooltip>
+            <a-tooltip placement="bottom">
+                <template #title>
+                    <span>小地图</span>
+                </template>
+                <a-button :icon="h(HeatMapOutlined)" @click="showMiniMap" size="large" />
+            </a-tooltip>
+            <a-tooltip placement="bottom">
+                <template #title>
+                    <span>边动画</span>
+                </template>
+                <a-button :icon="h(PlayCircleOutlined)" @click="showEdgeAnimation" size="large"
+                    v-if="!isOpenEdgeAnimation" />
+                <a-button :icon="h(PauseCircleOutlined)" @click="showEdgeAnimation" size="large" v-else />
+            </a-tooltip>
+            <a-tooltip placement="bottom">
+                <template #title>
+                    <span>下载图片</span>
+                </template>
+                <a-button :icon="h(DownloadOutlined)" @click="download" size="large" />
+            </a-tooltip>
+            <a-tooltip placement="bottom">
+                <template #title>
+                    <span>cmd + c 或 ctrl + c 复制节点</span><br />
+                    <span>cmd + v 或 ctrl + v 粘贴节点</span><br />
+                    <span>cmd + z 或 ctrl + z 撤销操作</span><br />
+                    <span>cmd + y 或 ctrl + y 回退操作</span><br />
+                    <span>shift 批量选中</span><br />
+                    <span>backspace 删除操作</span><br />
+                </template>
+                <a-button :icon="h(QuestionCircleOutlined)" size="large" />
+            </a-tooltip>
         </a-button-group>
     </div>
 </template>
 <script setup>
-import { onMounted, ref, reactive } from 'vue'
+import { onMounted, ref, h } from 'vue'
+import { ZoomInOutlined, ZoomOutOutlined, FullscreenOutlined, FullscreenExitOutlined, ArrowLeftOutlined, ArrowRightOutlined, HeatMapOutlined, PlayCircleOutlined, PauseCircleOutlined, DownloadOutlined, QuestionCircleOutlined } from '@ant-design/icons-vue'
 
 const $props = defineProps({
-    logicFlow: Object || String,
+    logicFlow: Object,
     catTurboData: Boolean
 })
-const undoDisable = ref(true);
-const redoDisable = ref(true);
-const submitDisable = ref(true);
+const undoDisable = ref(true)
+const redoDisable = ref(true)
+const submitDisable = ref(true)
 
 onMounted(() => {
-    $props .logicFlow && $props .logicFlow.on('history:change', ({ data: { undoAble, redoAble } }) => {
-        undoDisable.value = !undoAble;
-        redoDisable.value = !redoAble;
-        const graphData = $props .logicFlow.getGraphData()
+    $props.logicFlow && $props.logicFlow.on('history:change', ({ data: { undoAble, redoAble } }) => {
+        undoDisable.value = !undoAble
+        redoDisable.value = !redoAble
+        const graphData = $props.logicFlow.getGraphData()
         const nodes = graphData.nodes
         const hasStart = nodes.filter(k => k.flow_type === 'start').length > 0
         const hasEnd = nodes.filter(k => k.flow_type === 'end').length > 0
         submitDisable.value = !(hasStart && hasEnd)
-    });
-});
+    })
+})
 
+// 放大
 const zoomIn = () => {
-    $props .logicFlow.zoom(true);
-};
-
-const zoomOut = () => {
-    $props .logicFlow.zoom(false);
-};
-
-const zoomReset = () => {
-    $props .logicFlow.resetZoom();
-};
-
-const translateReset = () => {
-    $props .logicFlow.resetTranslate();
-};
-
-const reset = () => {
-    $props .logicFlow.resetZoom();
-    $props .logicFlow.resetTranslate();
-};
-
-const undo = () => {
-    $props .logicFlow.undo();
-};
-
-const redo = () => {
-    $props .logicFlow.redo();
-};
-
-const download = () => {
-    $props .logicFlow.getSnapshot();
-};
-
-const catData = () => {
-    emit('catData');
-};
-
-const catTurboData = () => {
-    emit('catTurboData');
-};
-
-const showMiniMap = () => {
-    const { lf } = props;
-    lf.extension.miniMap.show(lf.graphModel.width - 150, 40)
-};
-
-const submit = () => {
-   
+    $props.logicFlow.zoom(true)
 }
+
+// 缩小
+const zoomOut = () => {
+    $props.logicFlow.zoom(false)
+}
+
+// 大小适应
+const zoomReset = () => {
+    $props.logicFlow.resetZoom()
+}
+
+// 定位还原
+const translateReset = () => {
+    $props.logicFlow.resetTranslate()
+}
+
+// 上一步
+const undo = () => {
+    $props.logicFlow.undo()
+}
+
+// 下一步
+const redo = () => {
+    $props.logicFlow.redo()
+}
+
+// 小地图
+let isShowMiniMap = false
+const showMiniMap = () => {
+    const { logicFlow } = $props
+    if (!isShowMiniMap) {
+        // logicFlow.extension.miniMap.show(logicFlow.graphModel.width - 150, 40)
+        logicFlow.extension.miniMap.show()
+        isShowMiniMap = true
+    } else {
+        logicFlow.extension.miniMap.hide()
+        isShowMiniMap = false
+    }
+}
+
+// 边动画
+let isOpenEdgeAnimation = false
+const showEdgeAnimation = () => {
+    const { logicFlow } = $props
+    const { edges } = logicFlow.getGraphRawData()
+
+    if (edges && edges.length > 0) {
+        if (!isOpenEdgeAnimation) {
+            edges.forEach((edge) => {
+                logicFlow.openEdgeAnimation(edge.id)
+            })
+        } else {
+            edges.forEach((edge) => {
+                logicFlow.closeEdgeAnimation(edge.id)
+            })
+        }
+        isOpenEdgeAnimation = !isOpenEdgeAnimation
+    }
+}
+
+// 下载
+const download = () => {
+    $props.logicFlow.getSnapshot()
+}
+
 </script>
 <style scoped></style>

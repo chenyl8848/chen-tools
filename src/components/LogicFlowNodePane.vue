@@ -1,7 +1,9 @@
 <template>
-  <div v-for="(item, key) in approveNodes" :key="key" class="approve-node">
-    <div class="node-shape" :class="'node-' + item.type" :style="item.style" @mousedown="dragNode(item)"></div>
-    <div class="node-label">{{ item.label }}</div>
+  <div v-for="(item, key) in nodes" :key="key" class="node" @mousedown="dragNode(item)">
+    <div v-html="item.svg"></div>
+    <div class="node-label">
+        {{ item.label }}
+    </div>
   </div>
 </template>
 
@@ -16,105 +18,66 @@ const dragNode = (item) => {
   $props.logicFlow.dnd.startDrag({
     type: item.type,
     text: item.label,
-  });
+  })
 }
 
-const approveNodes = [
-  {
-    type: 'circle',
-    label: '开始',
-    style: {
-      width: '50px',
-      height: '50px',
-      borderRadius: '25px',
-      border: '2px solid #FF6347',
-    },
-    property: {
-      username: '',
-      time: '',
-      startTime: '',
-      endTime: '',
-    }
-  },
+const nodes = [
   {
     type: 'rect',
-    label: '任务',
-    style: {
-      width: '50px',
-      height: '40px',
-      borderRadius: '4px',
-      border: '2px solid #3CB371',
-    }
-  },
-  // {
-  //   type: 'approver',
-  //   label: '审批',
-  //   style: {
-  //     width: '50px',
-  //     height: '40px',
-  //     borderRadius: '4px',
-  //     border: '2px solid #3CB371',
-  //   }
-  // },
-  {
-    type: 'diamond',
-    label: '判断',
-    style: {
-      width: '40px',
-      height: '40px',
-      border: '2px solid #6495ED',
-      transform: 'rotate(45deg)',
-    }
+    label: '矩形',
+    svg: '<svg t="1726799793380" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7796" width="48" height="48"><path d="M928 896H96a53.393333 53.393333 0 0 1-53.333333-53.333333V181.333333a53.393333 53.393333 0 0 1 53.333333-53.333333h832a53.393333 53.393333 0 0 1 53.333333 53.333333v661.333334a53.393333 53.393333 0 0 1-53.333333 53.333333zM96 170.666667a10.666667 10.666667 0 0 0-10.666667 10.666666v661.333334a10.666667 10.666667 0 0 0 10.666667 10.666666h832a10.666667 10.666667 0 0 0 10.666667-10.666666V181.333333a10.666667 10.666667 0 0 0-10.666667-10.666666z" fill="#5C5C66" p-id="7797"></path></svg>'
   },
   {
     type: 'circle',
-    label: '结束',
-    style: {
-      width: '50px',
-      height: '50px',
-      borderRadius: '25px',
-      border: '2px solid red',
-    }
+    label: '圆形',
+    svg: '<svg t="1726801253868" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12914" width="48" height="48"><path d="M512 993.28c-265.216 0-481.28-216.064-481.28-481.28S246.784 30.72 512 30.72s481.28 216.064 481.28 481.28-216.064 481.28-481.28 481.28z m0-870.4c-214.528 0-389.12 174.592-389.12 389.12s174.592 389.12 389.12 389.12 389.12-174.592 389.12-389.12-174.592-389.12-389.12-389.12z" fill="#666666" p-id="12915"></path></svg>'
   },
+  {
+    type: 'ellipse',
+    label: '椭圆',
+    svg: '<svg t="1726801460102" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="14737" width="48" height="48"><path d="M982 360.7c-26.4-45.3-63.9-85.8-111.6-120.4C774.3 170.4 647 132 512 132c-135 0-262.3 38.4-358.5 108.2-47.6 34.6-85.2 75.2-111.5 120.5C14.1 408.5 0 459.4 0 512c0 52.6 14.1 103.5 42 151.3 26.4 45.3 63.9 85.8 111.6 120.4C249.7 853.6 377 892 512 892c135 0 262.3-38.4 358.5-108.2 47.7-34.6 85.2-75.1 111.6-120.4 27.8-47.8 42-98.7 42-151.3-0.1-52.7-14.2-103.6-42.1-151.4zM835.2 735.2C749.2 797.6 634.5 832 512 832s-237.2-34.4-323.2-96.8C105.7 674.9 60 595.6 60 512s45.7-162.9 128.8-223.2c86-62.4 200.7-96.8 323.2-96.8s237.2 34.4 323.2 96.8C918.3 349.1 964 428.4 964 512s-45.7 162.9-128.8 223.2z" p-id="14738"></path></svg>'
+  },
+  {
+    type: 'diamond',
+    label: '菱形',
+    svg: '<svg t="1726802195794" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15907" width="48" height="48"><path d="M511.9233084 148.91700253l363.00630586 363.00630587-363.00630586 363.00630586-363.00630587-363.00630586 363.00630586-363.00630586m1e-8-86.91700254l-449.9233084 449.92330839 449.9233084 449.92330841 449.9233084-449.92330841-449.92330841-449.92330839z" fill="#000000" p-id="15908"></path></svg>'
+  },
+  {
+    type: 'text',
+    label: '文本',
+    svg: '<svg t="1726802259439" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="17024" width="48" height="48"><path d="M885.005342 152.185075c0 16.95823-13.750165 30.707372-30.709419 30.707372L169.703053 182.892447c-16.95823 0-30.708396-13.749142-30.708396-30.707372l0 0c0-16.959254 13.750165-30.708396 30.708396-30.708396l684.59287 0C871.255177 121.475656 885.005342 135.224798 885.005342 152.185075L885.005342 152.185075 885.005342 152.185075zM512.002047 902.523321c-16.963347 0-30.708396-13.745049-30.708396-30.707372L481.293651 153.189961c0-16.959254 13.746072-30.708396 30.708396-30.708396l0 0c16.95823 0 30.704302 13.749142 30.704302 30.708396l0 718.630081C542.706349 888.778272 528.960277 902.523321 512.002047 902.523321L512.002047 902.523321 512.002047 902.523321z" fill="#272636" p-id="17025"></path></svg>'
+  },
+  {
+    type: 'html',
+    label: 'HTML',
+    svg: '<svg t="1726802304700" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="18146" width="48" height="48"><path d="M194.33 479.765h-101.295v-101.28h-46.035v267.030h46.035v-119.7h101.28v119.7h46.035v-267.030h-46.035v101.28zM277.205 415.31h73.665v230.205h46.035v-230.205h73.665v-36.825h-193.365v36.825zM627.815 560.42l-46.755-181.935h-73.665v267.030h46.035v-211.785l46.035 211.785h55.245l46.83-213.93-0.795 213.93h46.035v-267.030h-73.665l-45.3 181.935zM848.090 608.69v-230.205h-46.035v267.030h174.945v-36.825h-128.91z" fill="#272636" p-id="18147"></path></svg>'
+  }
 ]
 </script>
 
 <style scoped>
-.approve-node {
+.node {
   display: inline-block;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 0px;
   margin: 5px;
   color: #fff;
-}
-
-.approve-node .node-shape {
-  width: 64px;
-  height: 64px;
   cursor: pointer;
-  /* border-radius: 50%; */
-  /* background-color: #1890ff; */
+  height: 75px;
 }
-
-.approve-node .node-label {
+.node .node-label {
   font-size: 14px;
   color: #000000;
-  margin-top: 8px;
+  /* margin-top: 8px; */
   text-align: center;
-}
-
-.node-end {
-  position: relative;
-}
-
-.node-end:after {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: red;
-  top: 10px;
-  left: 10px;
-  cursor: pointer;
+  /* 文字不能被选中 */
+  /* Safari */
+  -webkit-user-select: none;
+  /* Firefox */
+  -moz-user-select: none;
+  /* IE/Edge */
+  -ms-user-select: none;
+  /* 标准语法 */
+  user-select: none;
 }
 </style>

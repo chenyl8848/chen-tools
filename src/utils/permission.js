@@ -3,7 +3,6 @@ import { getTools } from '../tools'
 const modules = import.meta.glob('@/**/*.vue')
 
 router.beforeEach(async (to, from, next) => {
-    console.log("hhhhhhh")
     next()
 })
 
