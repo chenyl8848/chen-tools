@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { getTools } from '@/tools'
+import { getTools, getMyFavoriteTool } from '@/tools'
 import { ref } from "vue"
 
 const FAVORITE_TOOL_KEY = 'favoriteTools'
@@ -10,12 +10,9 @@ const useToolStore = defineStore('Tool', () => {
         const regularTools = getTools().filter((item) => item.children)
 
         if (favoriteTools.value.length > 0) {
-            let favoriteTool = {
-                title: '我的收藏',
-                icon: 'icon-shoucang',
-                path: '/favorite',
-                children: favoriteTools.value
-            }
+            let favoriteTool = getMyFavoriteTool()
+            favoriteTool.children = favoriteTools.value
+            
             regularTools.unshift(favoriteTool)
 
             regularTools.forEach((item1) => {
@@ -40,12 +37,19 @@ const useToolStore = defineStore('Tool', () => {
         return regularTools
     }
 
+    const mergeMenus = () => {
+        return [...mergeTools(), ...getTools().filter((item) => !item.children)]
+    }
+
     let tools = ref(mergeTools())
+
+    let menus = ref(mergeMenus())
 
     const addFavorite = (tool) => {
         favoriteTools.value.push(tool)
         localStorage.setItem(FAVORITE_TOOL_KEY, JSON.stringify(favoriteTools.value))
         tools.value = mergeTools()
+        menus.value = mergeMenus()
     }
 
     const removeFavorite = (tool) => {
@@ -55,10 +59,12 @@ const useToolStore = defineStore('Tool', () => {
             localStorage.setItem(FAVORITE_TOOL_KEY, JSON.stringify(favoriteTools.value))
         }
         tools.value = mergeTools()
+        menus.value = mergeMenus()
     }
 
     return {
         tools,
+        menus,
         // favoriteTools,
         // mergeTools,
         addFavorite,

@@ -145,6 +145,21 @@ const tools = [
     }
 ]
 
+const myFavoriteTool = {
+    title: '我的收藏',
+    icon: 'icon-shoucang',
+    path: '/favorite',
+    children: []
+}
+
 export const getTools = () => {
     return tools
+}
+
+export const getMyFavoriteTool = () => {
+    return myFavoriteTool
+}
+
+export const getParentTool = (path) => {
+    return tools.filter((item) => item.children).find((item1) => item1.children.findIndex((item2) => item2.path === path) > -1)
 }

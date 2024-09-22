@@ -1,13 +1,13 @@
 <template>
     <div class="logo">
         <router-link to="/">
-            <img src="/src/assets/images/chen-tools.svg" v-if="!settingStore.collapsed"/>
-            <img src="/src/assets/images/tools.svg" v-else/>
+            <img src="/src/assets/images/chen-tools.svg" v-if="!settingStore.collapsed" />
+            <img src="/src/assets/images/tools.svg" v-else />
         </router-link>
         <!-- <img src="/src/assets/images/chen-tools.png" @click="goHome" /> -->
     </div>
-    <a-menu mode="inline">
-        <template v-for="menu in toolStore.tools">
+    <a-menu mode="inline" v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys">
+        <template v-for="menu in toolStore.menus">
             <template v-if="!menu.children && !menu.isHidden">
                 <a-menu-item :key="menu.path" @click="routerJump(menu)">
                     <icon-font :type="menu.icon" />
@@ -37,19 +37,38 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { ref, watch } from 'vue'
 import useSettingStore from '@/store/module/setting'
 const settingStore = useSettingStore()
 import useToolStore from '@/store/module/tool'
 const toolStore = useToolStore()
+import { getParentTool } from '@/tools'
 
 // import { getTools } from '@/tools'
 // const menus = getTools()
 
+const openKeys = ref([''])
+const selectedKeys = ref([])
+
 const $router = useRouter()
 const routerJump = (menu) => {
+    console.log(menu, "menuuuuuuuuuuu")
     $router.push(menu.path)
 }
+
+const $route = useRoute()
+watch(() => $route.path, (newValue) => { 
+    openKeys.value = []
+    selectedKeys.value = []
+    const parentTool = getParentTool(newValue)
+    if (parentTool) {
+        openKeys.value.push(parentTool.path)
+    }
+    selectedKeys.value.push(newValue)
+}, { immediate: false })
+
+
 </script>
 
 <style lang="scss">
