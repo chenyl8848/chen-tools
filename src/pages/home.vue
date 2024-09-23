@@ -48,6 +48,7 @@
             </a-card>
         </div>
     </div>
+    <a-back-top />
 </template>
 
 <script setup>

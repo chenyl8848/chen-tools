@@ -53,7 +53,6 @@ const selectedKeys = ref([])
 
 const $router = useRouter()
 const routerJump = (menu) => {
-    console.log(menu, "menuuuuuuuuuuu")
     $router.push(menu.path)
 }
 
