@@ -72,28 +72,21 @@
     </div>
 </template>
 <script setup>
-import { onMounted, ref, h } from 'vue'
+import { h } from 'vue'
 import { ZoomInOutlined, ZoomOutOutlined, FullscreenOutlined, FullscreenExitOutlined, ArrowLeftOutlined, ArrowRightOutlined, HeatMapOutlined, PlayCircleOutlined, PauseCircleOutlined, DownloadOutlined, QuestionCircleOutlined } from '@ant-design/icons-vue'
 
 const $props = defineProps({
-    logicFlow: Object,
-    catTurboData: Boolean
+    logicFlow: Object
 })
-const undoDisable = ref(true)
-const redoDisable = ref(true)
-const submitDisable = ref(true)
 
-onMounted(() => {
-    $props.logicFlow && $props.logicFlow.on('history:change', ({ data: { undoAble, redoAble } }) => {
-        undoDisable.value = !undoAble
-        redoDisable.value = !redoAble
-        const graphData = $props.logicFlow.getGraphData()
-        const nodes = graphData.nodes
-        const hasStart = nodes.filter(k => k.flow_type === 'start').length > 0
-        const hasEnd = nodes.filter(k => k.flow_type === 'end').length > 0
-        submitDisable.value = !(hasStart && hasEnd)
-    })
-})
+// onMounted(() => {
+//     $props.logicFlow && $props.logicFlow.on('history:change', ({ data: { undoAble, redoAble } }) => {
+//         console.log(undoAble, redoAble, "ableeeeeeeeeeeeeeeeeeeeeeeee")
+//         const graphData = $props.logicFlow.getGraphData()
+//         const nodes = graphData.nodes
+//         console.log(nodes, graphData, "graphhhhhhhhhhhhhhhh")
+//     })
+// })
 
 // 放大
 const zoomIn = () => {

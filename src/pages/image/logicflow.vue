@@ -1,5 +1,9 @@
 <template>
     <a-card>
+        <!-- <div style="display: flex;align-items: center;">
+            <a-avatar src="/src/assets/images/flow.svg" shape="square" size="large" />
+            <p class="title">流程图</p>
+        </div> -->
         <p class="title">流程图</p>
         <div class="logicFlowContainer" ref="logicFlowContainerRef">
         </div>
@@ -24,10 +28,13 @@ import { Menu, MiniMap, Snapshot } from '@logicflow/extension'
 import "@logicflow/core/lib/style/index.css"
 import "@logicflow/extension/lib/style/index.css"
 import { onMounted, ref } from "vue"
+import { LOCAL_STORAGE_LOGIC_FLOW_GRAOH_DATA_KEY } from "@/utils/enum"
 
 const logicFlowContainerRef = ref()
 let logicFlow = ref(null)
 
+// 流程图数据
+const graphData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LOGIC_FLOW_GRAOH_DATA_KEY)) || {}
 
 const initLogicFlow = () => {
     LogicFlow.use(Menu)
@@ -120,13 +127,17 @@ const initLogicFlow = () => {
         graphMenu: [],
     });
 
-    logicFlow.value.render()
+    logicFlow.value.render(graphData)
+
+    // 监听画布变化，实时保存数据
+    logicFlow.value.on('history:change', () => {
+        localStorage.setItem(LOCAL_STORAGE_LOGIC_FLOW_GRAOH_DATA_KEY, JSON.stringify(logicFlow.value.getGraphData()))
+    })
 }
 
 onMounted(() => {
     initLogicFlow()
 })
-
 </script>
 
 <style lang="scss">

@@ -43,7 +43,7 @@ import useSettingStore from '@/store/module/setting'
 const settingStore = useSettingStore()
 import useToolStore from '@/store/module/tool'
 const toolStore = useToolStore()
-import { getParentTool } from '@/tools'
+import { getParentTool } from '@/utils/tools'
 
 // import { getTools } from '@/tools'
 // const menus = getTools()

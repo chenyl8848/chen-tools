@@ -1,5 +1,5 @@
 import router from '../router'
-import { getTools } from '../tools'
+import { getTools } from '@/utils/tools'
 const modules = import.meta.glob('@/**/*.vue')
 
 router.beforeEach(async (to, from, next) => {

@@ -38,7 +38,7 @@ const tools = [
             {
                 title: '手绘白板',
                 description: "虚拟白板，用于勾画手绘般的图表",
-                icon: 'icon-liuchengtu',
+                icon: 'icon-huiyishi',
                 favicon: '/src/assets/images/whiteboard.svg',
                 path: '/whiteboard',
                 component: '/pages/image/whiteboard'
