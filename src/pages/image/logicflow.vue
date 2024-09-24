@@ -24,7 +24,7 @@
 import LogicFlowNodePane from "@/components/LogicFlowNodePane.vue"
 import LogicFlowControlPane from "@/components/LogicFlowControlPane.vue"
 import LogicFlow from "@logicflow/core"
-import { Menu, MiniMap, Snapshot } from '@logicflow/extension'
+import { Menu, MiniMap, Snapshot, SelectionSelect } from '@logicflow/extension'
 import "@logicflow/core/lib/style/index.css"
 import "@logicflow/extension/lib/style/index.css"
 import { onMounted, ref } from "vue"
@@ -40,6 +40,7 @@ const initLogicFlow = () => {
     LogicFlow.use(Menu)
     LogicFlow.use(MiniMap)
     LogicFlow.use(Snapshot)
+    LogicFlow.use(SelectionSelect)
 
     logicFlow.value = new LogicFlow({
         container: logicFlowContainerRef.value,
@@ -132,6 +133,11 @@ const initLogicFlow = () => {
     // 监听画布变化，实时保存数据
     logicFlow.value.on('history:change', () => {
         localStorage.setItem(LOCAL_STORAGE_LOGIC_FLOW_GRAOH_DATA_KEY, JSON.stringify(logicFlow.value.getGraphData()))
+    })
+
+    // 关闭选区
+    logicFlow.value.on('selection:selected', () => {
+        logicFlow.value.extension.selectionSelect.closeSelectionSelect();
     })
 }
 

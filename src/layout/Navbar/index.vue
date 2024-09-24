@@ -1,14 +1,16 @@
 <template>
     <div class="navbar">
         <a-tooltip placement="bottom" title="折叠">
-            <a-button type="text" shape="circle" class="btn-block" size="large" v-if="!settingStore.collapsed" @click="collapseMenu">
+            <a-button type="text" shape="circle" class="btn-block" size="large" v-if="!settingStore.collapsed"
+                @click="collapseMenu">
                 <template #icon>
                     <MenuFoldOutlined />
                 </template>
             </a-button>
         </a-tooltip>
         <a-tooltip placement="bottom" title="展开">
-            <a-button type="text" shape="circle" class="btn-block" size="large" v-if="settingStore.collapsed" @click="collapseMenu">
+            <a-button type="text" shape="circle" class="btn-block" size="large" v-if="settingStore.collapsed"
+                @click="collapseMenu">
                 <template #icon>
                     <MenuUnfoldOutlined />
                 </template>
@@ -30,7 +32,7 @@
                 </a-button>
             </template>
         </a-input>
-        <a-tooltip placement="bottom" title="关于本站">
+        <!-- <a-tooltip placement="bottom" title="关于本站">
             <a-button type="text" shape="circle" class="btn-block" size="large" @click="goAbout">
                 <template #icon>
                     <InfoCircleOutlined />
@@ -41,6 +43,20 @@
             <a-button type="text" shape="circle" class="btn-block" size="large" @click="goIssue">
                 <template #icon>
                     <CommentOutlined />
+                </template>
+            </a-button>
+        </a-tooltip> -->
+        <a-tooltip placement="bottom" title="进入全屏">
+            <a-button type="text" shape="circle" class="btn-block" size="large" @click="fullScreen" v-if="!isFull">
+                <template #icon>
+                    <FullscreenOutlined />
+                </template>
+            </a-button>
+        </a-tooltip>
+        <a-tooltip placement="bottom" title="退出全屏">
+            <a-button type="text" shape="circle" class="btn-block" size="large" @click="fullScreen" v-if="isFull">
+                <template #icon>
+                    <FullscreenExitOutlined />
                 </template>
             </a-button>
         </a-tooltip>
@@ -100,6 +116,21 @@ const goAbout = () => {
 
 const goIssue = () => {
     $router.push("/issue")
+}
+
+const isFull = ref(false)
+const fullScreen = () => {
+    // DOM 对象的一个属性:可以用来判断当前是不是全屏模式[全屏:true,不是全屏:false]
+    let full = document.fullscreenElement
+    if (full) {
+        // 是全屏，退出全屏模式
+        isFull.value = false
+        document.exitFullscreen()
+    } else {
+        // 不是全屏，进入全屏模式
+        isFull.value = true
+        document.documentElement.requestFullscreen()
+    }
 }
 
 const goGithub = () => {
