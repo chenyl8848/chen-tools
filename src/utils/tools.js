@@ -108,7 +108,7 @@ const tools = [
         path: '/other',
         children: [
             {
-                title: '抽奖工具',
+                title: '抽奖',
                 description: "大转盘/九宫格/老虎机",
                 icon: 'icon-choujiang',
                 favicon: '/src/assets/images/lottery.svg',
@@ -162,4 +162,14 @@ export const getMyFavoriteTool = () => {
 
 export const getParentTool = (path) => {
     return tools.filter((item) => item.children).find((item1) => item1.children.findIndex((item2) => item2.path === path) > -1)
+}
+
+export const getSearchTools = (toolTitle) => {
+    if (!toolTitle) {
+        return []
+    }
+    const allTools = []
+    tools.filter((item) => item.children).forEach((item1) => item1.children.forEach((item2) => allTools.push(item2)))
+
+    return allTools.filter((item) => item.title.indexOf(toolTitle) > -1)
 }

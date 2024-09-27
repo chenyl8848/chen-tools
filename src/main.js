@@ -32,7 +32,7 @@ const startApp = async () => {
     // const app = createApp(App)
     app.use(router)
     app.use(Antd)
-    
+
     Object.keys(Icons).forEach((key) => {
         if (key === 'default') return
         const Icon = Icons[key]

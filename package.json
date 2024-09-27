@@ -12,6 +12,7 @@
     "@ant-design/icons-vue": "^7.0.1",
     "@logicflow/core": "^2.0.3",
     "@logicflow/extension": "^2.0.7",
+    "@lucky-canvas/vue": "^0.1.11",
     "@univerjs/core": "^0.2.15",
     "@univerjs/design": "^0.2.15",
     "@univerjs/docs": "^0.2.15",
