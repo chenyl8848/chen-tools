@@ -10,22 +10,11 @@ import { createFromIconfontCN } from '@ant-design/icons-vue'
 const IconFont = createFromIconfontCN({
     scriptUrl: '//at.alicdn.com/t/c/font_4676471_laojvyhywxq.js'
 })
+import ToolTitle from '@/components/ToolTitle.vue'
 
 import store from './store'
 
 const app = createApp(App)
-// app.use(router)
-// app.use(Antd)
-
-// Object.keys(Icons).forEach((key) => {
-//     if (key === 'default') return
-//     const Icon = Icons[key]
-//     app.component(key, Icon)
-// })
-// app.component('IconFont', IconFont)
-
-
-// app.mount('#app')
 
 const startApp = async () => {
     await initRoutes()
@@ -39,6 +28,7 @@ const startApp = async () => {
         app.component(key, Icon)
     })
     app.component('IconFont', IconFont)
+    app.component('ToolTitle', ToolTitle)
     
     app.use(store)
     app.mount('#app')

@@ -1,5 +1,28 @@
 const tools = [
     {
+        title: '开发工具',
+        icon: 'icon-wendanggongju',
+        path: '/dev',
+        children: [
+            {
+                title: 'URL 编码解码',
+                description: "URL 编码解码",
+                icon: 'icon-Excel',
+                favicon: '/images/excel.svg',
+                path: '/url',
+                component: '/pages/dev/url'
+            },
+            {
+                title: 'JWT 生成解析',
+                description: "JWT 生成解析",
+                icon: 'icon-Excel',
+                favicon: '/images/excel.svg',
+                path: '/jwt',
+                component: '/pages/dev/jwt'
+            }
+        ]
+    },
+    {
         title: '文档工具',
         icon: 'icon-wendanggongju',
         path: '/document',
@@ -8,7 +31,7 @@ const tools = [
                 title: '在线表格',
                 description: "Excel 在线表格",
                 icon: 'icon-Excel',
-                favicon: '/src/assets/images/excel.svg',
+                favicon: '/images/excel.svg',
                 path: '/excel',
                 component: '/pages/document/excel'
             }
@@ -23,7 +46,7 @@ const tools = [
                 title: '思维导图',
                 description: "简单&强大的 Web 思维导图",
                 icon: 'icon-siweidaotu',
-                favicon: '/src/assets/images/xmind.png',
+                favicon: '/images/xmind.png',
                 path: '/mindmap',
                 component: '/pages/image/mindmap'
             },
@@ -31,7 +54,7 @@ const tools = [
                 title: '流程图',
                 description: "流程图、ER图、BPMN流程",
                 icon: 'icon-liuchengtu',
-                favicon: '/src/assets/images/flow.svg',
+                favicon: '/images/flow.svg',
                 path: '/logicflow',
                 component: '/pages/image/logicflow'
             },
@@ -39,7 +62,7 @@ const tools = [
                 title: '手绘白板',
                 description: "虚拟白板，用于勾画手绘般的图表",
                 icon: 'icon-huiyishi',
-                favicon: '/src/assets/images/whiteboard.svg',
+                favicon: '/images/whiteboard.svg',
                 path: '/whiteboard',
                 component: '/pages/image/whiteboard'
             },
@@ -55,7 +78,7 @@ const tools = [
             //     title: '生成短视频',
             //     description: "一键生成高清短视频",
             //     icon: 'icon-6zhengjianzhaopian',
-            //     favicon: '/src/assets/images/movie.png',
+            //     favicon: '/images/movie.png',
             //     path: '/movie',
             //     component: '/pages/ai/movie'
             // },
@@ -63,7 +86,7 @@ const tools = [
                 title: '生成证件照',
                 description: "轻量级的 AI 证件照制作",
                 icon: 'icon-6zhengjianzhaopian',
-                favicon: '/src/assets/images/idphotos.png',
+                favicon: '/images/idphotos.png',
                 path: '/idphotos',
                 component: '/pages/ai/idphotos'
             },
@@ -71,15 +94,15 @@ const tools = [
                 title: '文本转图片',
                 description: "文本生成图像",
                 icon: 'icon-image',
-                favicon: 'https://tools.ranblogs.com/images/logo/img.png',
-                path: '/fooocus',
+                favicon: '/images/img.webp',
+                path: '/images/fooocus',
                 component: '/pages/ai/fooocus'
             },
             {
                 title: '文本转语音',
                 description: "文本转语音，支持中英文双语",
                 icon: 'icon-voice',
-                favicon: '/src/assets/images/voice.png',
+                favicon: '/images/voice.png',
                 path: '/emotivoice',
                 component: '/pages/ai/emotivoice'
             },
@@ -95,7 +118,7 @@ const tools = [
                 title: '抖音去水印下载',
                 description: "抖音去水印批量下载用户主页作品",
                 icon: 'icon-douyin',
-                favicon: '/src/assets/images/douyin.svg',
+                favicon: '/images/douyin.svg',
                 path: '/movie',
                 component: '/pages/media/douyin'
             }
@@ -111,7 +134,7 @@ const tools = [
                 title: '抽奖',
                 description: "大转盘/九宫格/老虎机",
                 icon: 'icon-choujiang',
-                favicon: '/src/assets/images/lottery.svg',
+                favicon: '/images/lottery.svg',
                 path: '/lottery',
                 component: '/pages/other/lottery'
             },
@@ -119,7 +142,7 @@ const tools = [
                 title: '亲戚称谓计算器',
                 description: "大转盘/九宫格/老虎机",
                 icon: 'icon-jisuanqilishuai',
-                favicon: '/src/assets/images/calculator.svg',
+                favicon: '/images/calculator.svg',
                 path: '/relatives',
                 component: '/pages/other/relative'
             },

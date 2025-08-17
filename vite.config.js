@@ -15,8 +15,10 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
+        // api: 'modern-compiler',
         javascriptEnabled: true,
-        additionalData: '@import "./src/styles/variable.scss";',
+        // additionalData: '@import "./src/styles/variable.scss";',
+        additionalData: `@use "./src/styles/variable.scss" as *;`,
       },
     },
   },
@@ -35,4 +37,9 @@ export default defineConfig({
       },
     },
   },
+  // 打包配置
+  build: {
+    outDir: 'dist',
+    assetsInlineLimit: 0,
+  }
 })

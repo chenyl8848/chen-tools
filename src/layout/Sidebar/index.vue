@@ -1,8 +1,8 @@
 <template>
     <div class="logo">
         <router-link to="/">
-            <img src="/src/assets/images/chen-tools.svg" v-if="!settingStore.collapsed" />
-            <img src="/src/assets/images/tools.svg" v-else />
+            <img src="@/assets/images/chen-tools.webp" v-if="!settingStore.collapsed" />
+            <img src="@/assets/images/tools.webp" v-else />
         </router-link>
         <!-- <img src="/src/assets/images/chen-tools.png" @click="goHome" /> -->
     </div>

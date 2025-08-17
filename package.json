@@ -24,6 +24,7 @@
     "@univerjs/sheets-formula": "^0.2.15",
     "@univerjs/sheets-ui": "^0.2.15",
     "@univerjs/ui": "^0.2.15",
+    "@vueuse/core": "^13.6.0",
     "ant-design-vue": "^4.2.3",
     "axios": "^1.7.7",
     "pinia": "^2.2.2",
