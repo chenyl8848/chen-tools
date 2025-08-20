@@ -11,7 +11,7 @@
                 <a-space wrap>
                     <a-button type="primary" @click="encode">编码</a-button>
                     <a-button @click="decode">解码</a-button>
-                    <a-button type="text" @click="copyText">复制</a-button>
+                    <a-button type="text" @click="copyText(result)">复制</a-button>
                     <a-button type="primary" danger @click="clear">清空</a-button>
                 </a-space>
             </a-col>
@@ -25,9 +25,8 @@
 </template>
 
 <script setup>
-import { useClipboard } from '@vueuse/core'
 import { ref } from 'vue'
-import { message } from 'ant-design-vue'
+import { copyText } from '@/utils/common'
 
 const input = ref('')
 const result = ref('')
@@ -40,19 +39,7 @@ const decode = () => {
     result.value = decodeURIComponent(input.value)
 }
 
-const { copy, isSupported } = useClipboard({ result })
-
-const copyText = () => {
-    if (isSupported) {
-        copy(result.value)
-        message.success('复制成功！')
-    } else {
-        message.error('您的浏览器不支持 Clipboard API')
-    }
-}
-
 const clear = () => {
     input.value = ''
 }
-
 </script>

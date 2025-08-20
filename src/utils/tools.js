@@ -14,7 +14,7 @@ const tools = [
             },
             {
                 title: 'JWT 生成解析',
-                description: "JWT 生成解析",
+                description: "生成和解析 JSON Web Token（jwt）并显示其内容。",
                 icon: 'icon-Excel',
                 favicon: '/images/excel.svg',
                 path: '/jwt',

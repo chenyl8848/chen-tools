@@ -73,7 +73,8 @@
                 </a-form>
             </div>
             <a-divider type="vertical" style="height: 100%"></a-divider>
-            <div class="right">
+            <div class="right" ref="rightDiv">
+                <a-button @click="fullScreen">全屏</a-button>
                 <LuckyWheel ref="luckyWheelRef" :width="lotteryForm.size * 10" :height="lotteryForm.size * 10"
                     :prizes="prizes" :blocks="lotteryForm.blocks" :buttons="buttons" @start="startCallback"
                     @end="endCallback" v-if="lotteryForm.type === 'LuckyWheel'" />
@@ -162,6 +163,39 @@ const lotteryForm = reactive({
 watch(() => paddingSize.value, (newValue) => {
     lotteryForm.blocks[0].padding = newValue + "px"
 })
+
+const rightDiv = ref()
+let isFullScreen = false
+const fullScreen = () => {
+    console.log("fullScreenfullScreenfullScreenfullScreen")
+
+    if (isFullScreen) {
+        // 退出全屏
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    } else {
+        // 进入全屏
+        if (rightDiv.value.requestFullscreen) {
+            rightDiv.value.requestFullscreen();
+        } else if (rightDiv.value.webkitRequestFullScreen) {
+            rightDiv.value.webkitRequestFullScreen();
+        } else if (rightDiv.value.mozRequestFullScreen) {
+            rightDiv.value.mozRequestFullScreen();
+        } else if (rightDiv.value.msRequestFullscreen) {
+            // IE11
+            rightDiv.value.msRequestFullscreen();
+        }
+    }
+    
+    isFullScreen = !isFullScreen
+}
 
 </script>
 

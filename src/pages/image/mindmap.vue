@@ -1,6 +1,7 @@
 <template>
     <a-card>
         <p class="title">思维导图</p>
+        <a-button @click="fullScreen">全屏</a-button>
         <div class="mindMapContainer" ref="mindMapContainerRef">
         </div>
         <div class="left-fixed-menu">
@@ -120,6 +121,39 @@ const hide = () => {
 onMounted(() => {
     initMindMap()
 })
+
+let isFullScreen = false
+const fullScreen = () => {
+    console.log("fullScreenfullScreenfullScreenfullScreen")
+
+    if (isFullScreen) {
+        // 退出全屏
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    } else {
+        // 进入全屏
+        if (mindMapContainerRef.value.requestFullscreen) {
+            mindMapContainerRef.value.requestFullscreen();
+        } else if (mindMapContainerRef.value.webkitRequestFullScreen) {
+            mindMapContainerRef.value.webkitRequestFullScreen();
+        } else if (mindMapContainerRef.value.mozRequestFullScreen) {
+            mindMapContainerRef.value.mozRequestFullScreen();
+        } else if (mindMapContainerRef.value.msRequestFullscreen) {
+            // IE11
+            mindMapContainerRef.value.msRequestFullscreen();
+        }
+    }
+
+    isFullScreen = !isFullScreen
+}
+
 </script>
 
 <style lang="scss">
