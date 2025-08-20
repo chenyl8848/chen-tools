@@ -14,11 +14,19 @@ const tools = [
             },
             {
                 title: 'JWT 生成解析',
-                description: "生成和解析 JSON Web Token（jwt）并显示其内容。",
+                description: "生成和解析 JSON Web Token(JWT)并显示其内容",
                 icon: 'icon-Excel',
                 favicon: '/images/excel.svg',
                 path: '/jwt',
                 component: '/pages/dev/jwt'
+            },
+            {
+                title: '时间戳转换',
+                description: "时间戳转换",
+                icon: 'icon-Excel',
+                favicon: '/images/excel.svg',
+                path: '/timestamp',
+                component: '/pages/dev/timestamp'
             }
         ]
     },
