@@ -21,6 +21,7 @@
                 </a-form-item>
             </a-col>
         </a-row>
+        <a-divider />
         <a-row class="mgb-20">
             <a-col :span="24">
                 <a-space wrap>

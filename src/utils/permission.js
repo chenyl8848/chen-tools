@@ -1,14 +1,22 @@
 import router from '../router'
 import { getTools } from '@/utils/tools'
 const modules = import.meta.glob('@/**/*.vue')
+import { start, done } from '@/utils/nprogress'
 
-router.beforeEach(async (to, from, next) => {
-    next()
-})
+router.beforeEach((to, from, next) => {
+    // 开始进度条
+    start()
+    next();
+});
+
+router.afterEach(() => {
+    // 结束进度条
+    done()
+});
 
 export const initRoutes = () => {
     generateDynamicRoutes(getTools())
-} 
+}
 
 const generateDynamicRoutes = (menus) => {
     menus.forEach((item) => {

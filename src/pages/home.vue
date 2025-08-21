@@ -32,7 +32,7 @@
                         <a-button type="text" shape="circle" class="btn-block" size="large" v-if="item2.favorite"
                             @click.stop="cancelFavorite(item2)">
                             <template #icon>
-                                <icon :style="{ color: 'black' }">
+                                <icon :style="{ color: '#FF4500' }">
                                     <template #component>
                                         <svg width="1em" height="1em" fill="currentColor" viewBox="0 0 1024 1024">
                                             <path

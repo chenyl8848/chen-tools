@@ -31,7 +31,11 @@
             </a-col>
             <a-col :span="6" class="mgr-20">
                 <a-form-item label="时间">
-                    <a-input v-model:value="toDate" readOnly />
+                    <a-input v-model:value="toDate" readOnly >
+                        <template #suffix>
+                            <CopyOutlined @click="copyText(toDate)" />
+                        </template>
+                    </a-input>
                 </a-form-item>
             </a-col>
         </a-row>
@@ -47,7 +51,11 @@
             </a-col>
             <a-col :span="6" class="mgr-20">
                 <a-form-item label="时间戳">
-                    <a-input v-model:value="toTimestamp" readOnly />
+                    <a-input v-model:value="toTimestamp" readOnly >
+                         <template #suffix>
+                            <CopyOutlined @click="copyText(toTimestamp)" />
+                        </template>
+                    </a-input>
                 </a-form-item>
             </a-col>
         </a-row>

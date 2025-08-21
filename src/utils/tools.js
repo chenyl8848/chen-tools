@@ -1,30 +1,30 @@
 const tools = [
     {
         title: '开发工具',
-        icon: 'icon-wendanggongju',
+        icon: 'icon-kaifagongju',
         path: '/dev',
         children: [
             {
                 title: 'URL 编码解码',
                 description: "URL 编码解码",
-                icon: 'icon-Excel',
-                favicon: '/images/excel.svg',
+                icon: 'icon-Url',
+                favicon: '/images/url.svg',
                 path: '/url',
                 component: '/pages/dev/url'
             },
             {
                 title: 'JWT 生成解析',
                 description: "生成和解析 JSON Web Token(JWT)并显示其内容",
-                icon: 'icon-Excel',
-                favicon: '/images/excel.svg',
+                icon: 'icon-token',
+                favicon: '/images/jwt.svg',
                 path: '/jwt',
                 component: '/pages/dev/jwt'
             },
             {
                 title: '时间戳转换',
                 description: "时间戳转换",
-                icon: 'icon-Excel',
-                favicon: '/images/excel.svg',
+                icon: 'icon-shijianchuo',
+                favicon: '/images/timestamp.svg',
                 path: '/timestamp',
                 component: '/pages/dev/timestamp'
             }
