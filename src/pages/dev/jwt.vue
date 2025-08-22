@@ -82,10 +82,10 @@ const handleInputPayload = (event) => {
 const secret = ref('拳打南山敬老院，脚踢北海幼儿园。')
 const token = ref('')
 
-token.value = jwt.generateToken(secret.value, header.value, payload.value)
+token.value = jwt.generateToken(secret.value, JSON.parse(header.value), JSON.parse(payload.value))
 
 const generate = () => {
-    token.value = jwt.generateToken(secret.value, header.value, payload.value)
+    token.value = jwt.generateToken(secret.value, JSON.parse(header.value), JSON.parse(payload.value))
 }
 
 const parse = () => {

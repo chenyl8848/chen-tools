@@ -27,6 +27,14 @@ const tools = [
                 favicon: '/images/timestamp.svg',
                 path: '/timestamp',
                 component: '/pages/dev/timestamp'
+            },
+            {
+                title: 'JSON 格式化',
+                description: "JSON 格式化工具",
+                icon: 'icon-json',
+                favicon: '/images/json.svg',
+                path: '/json',
+                component: '/pages/dev/json'
             }
         ]
     },

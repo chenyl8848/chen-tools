@@ -10,3 +10,12 @@ export const copyText = (text) => {
         message.error('您的浏览器不支持 Clipboard API')
     }
 }
+
+export const transferred = (str, reg = "`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）;—|【】‘；：”“'。，、？") => {
+    let pattern = new RegExp("[" + reg + "]");
+    let res = '';
+    Array.from(str).forEach((char) => {
+        res += char.replace(pattern, `\\${char}`);
+    });
+    return res;
+}
