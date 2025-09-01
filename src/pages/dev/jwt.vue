@@ -1,6 +1,6 @@
 <template>
     <a-card>
-        <tool-title :title="'JWT 生成解析'" :description="'生成和解析 JSON Web Token（jwt）并显示其内容。'"></tool-title>
+        <tool-header />
         <a-row class="mgb-20">
             <a-col :span="8">
                 <a-form-item label="Header/头部" class="mgr-20">

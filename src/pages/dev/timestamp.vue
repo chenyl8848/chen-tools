@@ -1,6 +1,6 @@
 <template>
     <a-card>
-        <tool-title :title="'时间戳转换'" :description="'时间戳转换'"></tool-title>
+       <tool-header />
         <a-row>
             <a-col :span="6">
                 <a-form-item label="当前时间" class="mgr-20">

@@ -1,6 +1,6 @@
 <template>
     <a-card>
-        <tool-title :title="'富文本编辑器'" :description="'富文本编辑器'"></tool-title>
+        <tool-header />
         <div id="vditor"></div>
     </a-card>
 </template>

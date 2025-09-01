@@ -8,9 +8,9 @@ import { initRoutes } from '@/utils/permission'
 
 import { createFromIconfontCN } from '@ant-design/icons-vue'
 const IconFont = createFromIconfontCN({
-    scriptUrl: '//at.alicdn.com/t/c/font_4676471_69ai9y6tkqr.js'
+    scriptUrl: '//at.alicdn.com/t/c/font_4676471_opfz7grrk2.js'
 })
-import ToolTitle from '@/components/ToolTitle.vue'
+import ToolHeader from '@/components/ToolHeader.vue'
 
 import store from './store'
 
@@ -28,7 +28,7 @@ const startApp = async () => {
         app.component(key, Icon)
     })
     app.component('IconFont', IconFont)
-    app.component('ToolTitle', ToolTitle)
+    app.component('ToolHeader', ToolHeader)
     
     app.use(store)
     app.mount('#app')

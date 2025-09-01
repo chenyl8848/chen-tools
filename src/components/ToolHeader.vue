@@ -7,7 +7,10 @@
 </template>
 
 <script setup>
-defineProps(['title', 'description'])
+import { useTool } from '@/hook/global'
+const { title, description } = useTool()
+
+// defineProps(['title', 'description'])
 </script>
 
 <style lang="scss">

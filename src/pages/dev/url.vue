@@ -1,6 +1,6 @@
 <template>
     <a-card>
-        <tool-title :title="'URL 编码解码'" :description="'URL 编码解码'"></tool-title>
+        <tool-header />
         <a-row class="mgb-20">
             <a-col :span="24">
                 <a-textarea v-model:value="input" :auto-size="{ minRows: 5, maxRows: 10 }" allowClear />

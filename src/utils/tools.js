@@ -54,8 +54,8 @@ const tools = [
             {
                 title: '富文本编辑器',
                 description: "富文本编辑器",
-                icon: 'icon-Excel',
-                favicon: '/images/excel.svg',
+                icon: 'icon-markdown',
+                favicon: '/images/markdown.svg',
                 path: '/markdown',
                 component: '/pages/document/markdown'
             }

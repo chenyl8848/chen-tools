@@ -1,6 +1,6 @@
 <template>
     <a-card>
-        <tool-title :title="'JSON 格式化'" :description="'JSON 格式化工具'"></tool-title>
+        <tool-header />
         <a-row>
             <a-col :span="10" class="mgr-20">
                 <a-textarea v-model:value="jsonData.raw" :auto-size="{ minRows: 20, maxRows: 20 }" allowClear/>

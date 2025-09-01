@@ -26,7 +26,6 @@
     "@univerjs/ui": "^0.2.15",
     "@vueuse/core": "^13.6.0",
     "@vueuse/integrations": "^13.7.0",
-    "@wangeditor/editor-for-vue": "^5.1.12",
     "ant-design-vue": "^4.2.3",
     "axios": "^1.7.7",
     "crypto-js": "^4.2.0",

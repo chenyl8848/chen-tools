@@ -5,10 +5,10 @@ import { ref } from "vue"
 
 const useToolStore = defineStore('Tool', () => {
     let favoriteTools = ref(JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITE_TOOL_KEY)) || [])
-
+    
     const mergeTools = () => {
         const regularTools = getTools().filter((item) => item.children)
-
+        
         if (favoriteTools.value.length > 0) {
             let favoriteTool = getMyFavoriteTool()
             favoriteTool.children = favoriteTools.value
@@ -40,9 +40,24 @@ const useToolStore = defineStore('Tool', () => {
         return [...mergeTools(), ...getTools().filter((item) => !item.children)]
     }
 
+    const convertTools = () => {
+        let tools = []
+        getTools().forEach((item) => {
+            if (item.children) {
+                tools = [...tools, ...item.children]
+            } else {
+                tools.push(item)
+            }  
+        })
+
+        return tools
+    }
+
     let tools = ref(mergeTools())
 
     let menus = ref(mergeMenus())
+
+    const commonTools = ref(convertTools())
 
     const addFavorite = (tool) => {
         favoriteTools.value.push(tool)
@@ -64,6 +79,7 @@ const useToolStore = defineStore('Tool', () => {
     return {
         tools,
         menus,
+        commonTools,
         // favoriteTools,
         // mergeTools,
         addFavorite,
