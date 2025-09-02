@@ -87,6 +87,10 @@
                             <StarOutlined />
                             开源项目合集
                         </a-menu-item>
+                        <a-menu-item key="3">
+                            <InstagramOutlined />
+                            证件照生成器
+                        </a-menu-item>
                     </a-menu>
                 </template>
                 <a-button shape="round" type="primary" style="margin-right: 12px;">
@@ -167,10 +171,13 @@ const goReward = () => {
 const handleMenuClick = (data) => {
     switch (data.key) {
         case '1':
-            window.open('https://chenyl8848.github.io/')
+            window.open('https://chencoding.top/')
             break
         case '2':
             window.open('https://chencoding.top:8090/#/')
+            break
+        case '3':
+            window.open('https://chencoding.top:8082/')
             break
     }
 }

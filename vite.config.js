@@ -5,6 +5,7 @@ import viteCompression from 'vite-plugin-compression'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/',
   plugins: [
     vue(),
     viteCompression({
@@ -14,7 +15,7 @@ export default defineConfig({
       ext: 'gz', // 后缀名
       // algorithm: 'brotliCompress',
       // ext: '.br',
-      deleteOriginFile: true, // 压缩后是否删除压缩源文件
+      deleteOriginFile: false, // 压缩后是否删除压缩源文件
     })
   ],
   // 相对路径别名配置，使用 @ 代替 src

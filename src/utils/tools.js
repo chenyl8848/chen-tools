@@ -53,7 +53,7 @@ const tools = [
             },
             {
                 title: '富文本编辑器',
-                description: "富文本编辑器",
+                description: "基于 Vditor 实现，所见即所得，支持分屏预览",
                 icon: 'icon-markdown',
                 favicon: '/images/markdown.svg',
                 path: '/markdown',

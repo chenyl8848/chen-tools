@@ -13,11 +13,11 @@ import emoji from '@/utils/emoji'
 const vditor = ref(null)
 const computedHeight = computed(() => `${window.innerHeight - 350}px`)
 
-onMounted(() => {
+const initVditor = () => {
     vditor.value = new Vditor('vditor', {
         // height: '50vh',
         height: computedHeight.value,
-        // width: '100%',
+        width: '100%',
         toolbarConfig: {
             pin: true,
         },
@@ -25,7 +25,7 @@ onMounted(() => {
             enable: false,
         },
         after: () => {
-            vditor.value.setValue('hello, Vditor + Vue!');
+            vditor.value.setValue('');
         },
         hint: {
             emoji
@@ -38,6 +38,10 @@ onMounted(() => {
             }
         },
     })
+}
+
+onMounted(() => {
+    initVditor()
 })
 </script>
 
