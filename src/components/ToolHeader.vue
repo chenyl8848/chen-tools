@@ -2,8 +2,9 @@
     <a-divider orientation="left">
         {{ title }}
     </a-divider>
-    <a-descriptions :title="description" layout="vertical">
-    </a-descriptions>
+    <!-- <a-descriptions :title="description" layout="vertical">
+    </a-descriptions> -->
+    <p v-html="description" class="description"></p>
 </template>
 
 <script setup>
@@ -20,6 +21,11 @@ const { title, description } = useTool()
 }
 
 :where(.css-dev-only-do-not-override-1p3hq3p).ant-descriptions .ant-descriptions-title {
+    font-size: $toolDescriptionFontSize;
+    font-weight: $toolDescriptionFontWeight;
+}
+
+.description {
     font-size: $toolDescriptionFontSize;
     font-weight: $toolDescriptionFontWeight;
 }

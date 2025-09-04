@@ -1,9 +1,12 @@
 import { defineStore } from "pinia"
+import { useMobile } from '@/hook/global'
+const isMobile = useMobile()
 
 const useSettingStore = defineStore('Setting', {
     state: () => {
         return {
-            collapsed: false
+            // collapsed: false
+            collapsed: isMobile
         }
     },
 

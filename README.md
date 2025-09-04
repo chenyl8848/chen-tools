@@ -1,5 +1,64 @@
-# Vue 3 + Vite
+<h1 style="text-align: center">Chen-Tools</h1>
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+![](./src/assets/images/chen-tools.webp)
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+一款开源免费的在线工具箱，包含开发、文档、作图、媒体、生活等实用工具，主要基于 Vite + Vue + Ant Design Vue + Pinia 开发，某些工具使用了第三方开源库。
+
+- [项目地址](https://github.com/chenyl8848/chen-tools)
+- [在线体验](https://chencoding.top:8084/)
+
+## 工具集合
+
+- 开发工具
+  - [x] URL编码解码
+  - [x] JWT 生成解析
+  - [x] 时间戳转换
+  - [x] JSON 格式化
+  - [ ] Linux 命令查询
+- 文档工具
+  - [ ] 在线表格
+  - [x] 富文本编辑器
+- 作图工具
+  - [x] 思维导图
+  - [x] 流程图
+  - [ ] 手绘白板
+- AI 工具
+  - [ ] 生成证件照
+  - [ ] 文本转图片
+  - [ ] 文本转语音
+- 媒体工具
+  - [ ] 抖音去水印下载
+- 其他工具
+  - [ ] 抽奖
+  - [ ] 亲戚称谓计算器
+
+## 感谢
+
+- [VueUse](https://vueuse.nodejs.cn/) - 基础 Vue 组合式工具的集合。
+- [LogicFlow](http://logicflow.cn/tutorial/about) - 一款流程图编辑框架，提供了一系列流程图交互、编辑所必需的功能和灵活的节点自定义、插件等拓展机制。
+- [Univer](https://docs.univer.ai/guides/sheets) - 一个开源的办公套件引擎，旨在为开发者提供一个强大、灵活且易于使用的办公套件解决方案。
+- [SimpleMindMap](https://wanglin2.github.io/mind-map-docs/) - 一个 JavaScript 思维导图库，也是一个完整的思维导图工具。
+- [Vditor](https://b3log.org/vditor/) - 易于使用的 Markdown 编辑器，为适配不同的应用场景而生。
+- [lucky-canvas](https://100px.net/) - 基于 JS + Canvas 实现的【大转盘 & 九宫格 & 老虎机】抽奖。
+
+## 本地开发
+
+```bash
+# 克隆代码
+git clone https://github.com/chenyl8848/chen-tools.git
+
+# 安装依赖
+npm install
+
+# 启动项目
+npm run dev
+```
+
+## 其他项目
+
+- [个人博客](https://github.com/chenyl8848/chenyl8848.github.io)
+- [开源项目汇总](https://github.com/chenyl8848/great-open-source-project)
+
+## 联系本人
+
+![](https://camo.githubusercontent.com/35f15a05ef47abcc0e8395d8bc7ada0818168e2f68f7e43ce03f2d45a141f530/68747470733a2f2f6368656e2d636f64696e672e6f73732d636e2d7368656e7a68656e2e616c6979756e63732e636f6d2f2545352538352541432545342542432539372545352538462542372e706e67)

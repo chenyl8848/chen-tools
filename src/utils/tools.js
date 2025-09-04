@@ -53,7 +53,7 @@ const tools = [
             },
             {
                 title: '富文本编辑器',
-                description: "基于 Vditor 实现，所见即所得，支持分屏预览",
+                description: "基于 <a href='https://github.com/Vanessa219/vditor' target='_blank'>Vditor</a> 实现，所见即所得，支持分屏预览",
                 icon: 'icon-markdown',
                 favicon: '/images/markdown.svg',
                 path: '/markdown',
@@ -133,7 +133,7 @@ const tools = [
         ]
     },
     {
-        title: '自媒体工具',
+        title: '媒体工具',
         // icon: 'BulbOutlined',
         icon: 'icon-lanmuzimeiti',
         path: '/media',

@@ -44,7 +44,8 @@
                         </a-button>
                     </a-tooltip>
                 </template>
-                <p class="box-description">{{ item2.description }}</p>
+                <!-- <p class="box-description">{{ item2.description }}</p> -->
+                <p class="box-description" v-html="item2.description "></p>
             </a-card>
         </div>
     </div>
