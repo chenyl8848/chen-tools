@@ -16,7 +16,7 @@ export default defineConfig({
       // algorithm: 'brotliCompress',
       // ext: '.br',
       deleteOriginFile: false, // 压缩后是否删除压缩源文件
-    })
+    }),
   ],
   // 相对路径别名配置，使用 @ 代替 src
   resolve: {
@@ -54,5 +54,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsInlineLimit: 0,
-  }
+  },
 })

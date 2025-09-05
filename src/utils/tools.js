@@ -35,6 +35,14 @@ const tools = [
                 favicon: '/images/json.svg',
                 path: '/json',
                 component: '/pages/dev/json'
+            },
+            {
+                title: 'Linux 命令查询',
+                description: "Linux 命令查询工具",
+                icon: 'icon-json',
+                favicon: '/images/json.svg',
+                path: '/linux',
+                component: '/pages/dev/linux'
             }
         ]
     },

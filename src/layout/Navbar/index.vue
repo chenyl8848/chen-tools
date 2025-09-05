@@ -100,14 +100,15 @@
             </a-dropdown>
         </div>
         <a-modal v-model:open="open" :closable="false" :footer="null">
-            <a-input v-model:value="searchText" placeholder="请输入关键词搜索" />
+            <a-input v-model:value="searchText" placeholder="请输入关键词搜索" allowClear/>
             <a-list item-layout="horizontal" :data-source="searchTools" :locale="{ emptyText: '暂无数据' }">
                 <template #renderItem="{ item }">
                     <a-list-item>
                         <a-list-item-meta>
                             <template #title>
                                 <a-button type="link" @click="routerJump(item)">
-                                    <p>{{ item.title }} - {{ item.description }}</p>
+                                    <!-- <p>{{ item.title }} - {{ item.description }}</p> -->
+                                    <p>{{ item.title }}</p>
                                 </a-button>
                             </template>
                             <template #avatar>
