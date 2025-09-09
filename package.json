@@ -35,9 +35,11 @@
     "markdown-it": "^14.1.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.2.2",
+    "signature_pad": "^5.1.0",
     "simple-mind-map": "^0.11.0",
     "vditor": "^3.11.1",
     "vue": "^3.4.37",
+    "vue-color": "^3.3.2",
     "vue-json-pretty": "^2.5.0",
     "vue-router": "^4.4.3"
   },

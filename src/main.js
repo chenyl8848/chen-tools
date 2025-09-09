@@ -13,6 +13,7 @@ const IconFont = createFromIconfontCN({
 import ToolHeader from '@/components/ToolHeader.vue'
 
 import store from './store'
+import 'vue-color/style.css'
 
 const app = createApp(App)
 

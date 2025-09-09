@@ -43,6 +43,14 @@ const tools = [
                 favicon: '/images/json.svg',
                 path: '/linux',
                 component: '/pages/dev/linux'
+            },
+            {
+                title: '颜色选择器',
+                description: "颜色选择器",
+                icon: 'icon-json',
+                favicon: '/images/json.svg',
+                path: '/color',
+                component: '/pages/dev/color'
             }
         ]
     },
@@ -97,6 +105,14 @@ const tools = [
                 favicon: '/images/whiteboard.svg',
                 path: '/whiteboard',
                 component: '/pages/image/whiteboard'
+            },
+            {
+                title: '手绘签名',
+                description: "虚拟白板，用于勾画手绘般的图表",
+                icon: 'icon-huiyishi',
+                favicon: '/images/whiteboard.svg',
+                path: '/signature',
+                component: '/pages/image/signature'
             },
         ]
     },
