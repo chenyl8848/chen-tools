@@ -39,16 +39,16 @@ const tools = [
             {
                 title: 'Linux 命令查询',
                 description: "Linux 命令查询工具",
-                icon: 'icon-json',
-                favicon: '/images/json.svg',
+                icon: 'icon-linux',
+                favicon: '/images/linux.svg',
                 path: '/linux',
                 component: '/pages/dev/linux'
             },
             {
                 title: '颜色选择器',
                 description: "颜色选择器",
-                icon: 'icon-json',
-                favicon: '/images/json.svg',
+                icon: 'icon-yansexuanzeqi',
+                favicon: '/images/color-picker.svg',
                 path: '/color',
                 component: '/pages/dev/color'
             }
@@ -109,8 +109,8 @@ const tools = [
             {
                 title: '手绘签名',
                 description: "虚拟白板，用于勾画手绘般的图表",
-                icon: 'icon-huiyishi',
-                favicon: '/images/whiteboard.svg',
+                icon: 'icon-huaban',
+                favicon: '/images/signature.svg',
                 path: '/signature',
                 component: '/pages/image/signature'
             },

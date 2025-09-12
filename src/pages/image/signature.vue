@@ -45,11 +45,14 @@
                     </template>
                 </a-dropdown>
                 <a-button type="primary" @click="exportData" :icon="h(ExportOutlined)">导出</a-button>
-                <a-upload v-model:file-list="fileList" :max-count="1" accept=".json" :showUploadList="false"
-                    @change="importData">
-                    <a-button type="primary" @click="importData" :icon="h(ImportOutlined)">导入</a-button>
+                <a-upload v-model:file-list="jsonFile" :max-count="1" accept=".json" :showUploadList="false"
+                    :beforeUpload="importData">
+                    <a-button type="primary" :icon="h(ImportOutlined)">导入</a-button>
                 </a-upload>
-                <a-button type="primary" @click="importDataURL" :icon="h(UploadOutlined)">上传</a-button>
+                <a-upload v-model:file-list="imageFile" :max-count="1" accept=".png,.jpeg,.svg" :showUploadList="false"
+                    :beforeUpload="importDataURL">
+                    <a-button type="primary" :icon="h(UploadOutlined)">上传</a-button>
+                </a-upload>
             </a-space>
         </div>
     </a-card>
@@ -78,7 +81,8 @@ const backgroundColor = defineModel('backgroundColor', {
 
 const penSize = ref(2)
 
-const fileList = ref([])
+const jsonFile = ref([])
+const imageFile = ref([])
 
 const initSignature = () => {
     signaturePad.value = new SignaturePad(signaturePadContainerRef.value, {
@@ -154,14 +158,38 @@ const exportData = () => {
     downloadJSONData(data)
 }
 
-const importData = () => {
+const importData = (file) => {
     // signaturePad.value.fromData(data)
     // const jsonData = readFileData(fileList.value[0])
-    console.log(data.values, fileList.value)
+    const reader = new FileReader()
+    reader.onload = (e) => {
+        // 文件内容，例如文本文件的内容会是字符串形式
+        const content = e.target.result
+        // 在这里处理文件内容，例如解析JSON等
+        data = JSON.parse(content)
+        // 此处可以根据需要处理文件内容，例如发送到服务器等
+        signaturePad.value.fromData(data)
+    };
+    // 以文本形式读取文件内容，如果是其他类型文件，可以选择其他方法如readAsDataURL等
+    reader.readAsText(file)
+
+    // 阻止自动上传，因为我们手动处理了文件内容
+    return false
 }
 
-const importDataURL = () => {
-    signaturePad.value.fromDataURL(dataURL)
+const importDataURL = (file) => {
+    // signaturePad.value.fromDataURL(dataURL)
+    const reader = new FileReader()
+    reader.onload = (e) => {
+        // 这里是Base64编码的字符串
+        const base64String = e.target.result
+        dataURL = base64String
+        // 你可以在这里进行进一步的处理，例如存储或显示图片
+        signaturePad.value.fromDataURL(dataURL)
+    };
+    reader.readAsDataURL(file)
+
+    return false
 }
 
 onMounted(() => {
