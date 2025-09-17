@@ -77,6 +77,12 @@ const data = [
         avatar: 'https://100px.net/logo.png',
         description: '基于 JS + Canvas 实现的【大转盘 & 九宫格 & 老虎机】抽奖。'
     },
+    {
+        title: 'Linux Command',
+        url: 'https://wangchujiang.com/linux-command/hot.html',
+        avatar: 'https://wangchujiang.com/linux-command/img/favicon.ico',
+        description: 'Linux 命令大全搜索工具，内容包含 Linux 命令手册、详解、学习、搜集。'
+    },
 ]
 </script>
 

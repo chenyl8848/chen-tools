@@ -14,7 +14,8 @@
   - [x] JWT 生成解析
   - [x] 时间戳转换
   - [x] JSON 格式化
-  - [ ] Linux 命令查询
+  - [x] Linux 命令查询
+  - [x] 颜色选择器
 - 文档工具
   - [ ] 在线表格
   - [x] 富文本编辑器
@@ -22,6 +23,7 @@
   - [x] 思维导图
   - [x] 流程图
   - [ ] 手绘白板
+  - [x] 签名画板
 - AI 工具
   - [ ] 生成证件照
   - [ ] 文本转图片
@@ -34,14 +36,19 @@
 
 ## 感谢
 
-- [VueUse](https://vueuse.nodejs.cn/) - 基础 Vue 组合式工具的集合。
-- [LogicFlow](http://logicflow.cn/tutorial/about) - 一款流程图编辑框架，提供了一系列流程图交互、编辑所必需的功能和灵活的节点自定义、插件等拓展机制。
-- [Univer](https://docs.univer.ai/guides/sheets) - 一个开源的办公套件引擎，旨在为开发者提供一个强大、灵活且易于使用的办公套件解决方案。
-- [SimpleMindMap](https://wanglin2.github.io/mind-map-docs/) - 一个 JavaScript 思维导图库，也是一个完整的思维导图工具。
-- [Vditor](https://b3log.org/vditor/) - 易于使用的 Markdown 编辑器，为适配不同的应用场景而生。
-- [lucky-canvas](https://100px.net/) - 基于 JS + Canvas 实现的【大转盘 & 九宫格 & 老虎机】抽奖。
+- [VueUse](https://github.com/vueuse/vueuse) - 基础 Vue 组合式工具的集合。
+- [LogicFlow](https://github.com/didi/LogicFlow) - 一款流程图编辑框架，提供了一系列流程图交互、编辑所必需的功能和灵活的节点自定义、插件等拓展机制。
+- [Univer](https://github.com/dream-num/univer) - 一个开源的办公套件引擎，旨在为开发者提供一个强大、灵活且易于使用的办公套件解决方案。
+- [SimpleMindMap](https://github.com/wanglin2/mind-map) - 一个 JavaScript 思维导图库，也是一个完整的思维导图工具。
+- [Vditor](https://github.com/Vanessa219/vditor) - 易于使用的 Markdown 编辑器，为适配不同的应用场景而生。
+- [lucky-canvas](https://github.com/buuing/lucky-canvas) - 基于 JS + Canvas 实现的【大转盘 & 九宫格 & 老虎机】抽奖。
+- [linux-command](https://github.com/jaywcjlove/linux-command) - Linux 命令大全搜索工具，内容包含 Linux 命令手册、详解、学习、搜集。
+- [signature_pad](https://github.com/szimek/signature_pad) - 基于 HTML5 Canvas 的流畅签名绘制。
+- [vue-color](https://github.com/linx4200/vue-color) - 现代化的 Vue 颜色选择器集合——快速、便捷、易于使用。
 
 ## 本地开发
+
+### 启动项目
 
 ```bash
 # 克隆代码
@@ -52,7 +59,24 @@ npm install
 
 # 启动项目
 npm run dev
+
+## 打包部署
 ```
+
+### 添加工具
+
+1. 在 `src/utils/tools.js` 中添加工具配置信息，一个完整的工具配置信息如下：
+  ```json
+  {
+    "title": "URL 编码解码",
+    "description": "URL 编码解码",
+    "icon": "icon-Url",
+    "favicon": "/images/url.svg",
+    "path": "/url",
+    "component": "/pages/dev/url"
+  }
+  ```
+2. 在 `component` 配置的路径下新建工具组件并开发
 
 ## 其他项目
 

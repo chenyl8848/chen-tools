@@ -31,7 +31,6 @@
     "crypto-js": "^4.2.0",
     "highlight.js": "^11.11.1",
     "jwt-decode": "^4.0.0",
-    "linux-command": "^1.21.0",
     "markdown-it": "^14.1.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.2.2",

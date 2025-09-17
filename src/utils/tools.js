@@ -6,7 +6,7 @@ const tools = [
         children: [
             {
                 title: 'URL 编码解码',
-                description: "URL 编码解码",
+                description: 'URL 编码解码',
                 icon: 'icon-Url',
                 favicon: '/images/url.svg',
                 path: '/url',
@@ -14,7 +14,7 @@ const tools = [
             },
             {
                 title: 'JWT 生成解析',
-                description: "生成和解析 JSON Web Token(JWT)并显示其内容",
+                description: '生成和解析 JSON Web Token(JWT)并显示其内容',
                 icon: 'icon-token',
                 favicon: '/images/jwt.svg',
                 path: '/jwt',
@@ -22,7 +22,7 @@ const tools = [
             },
             {
                 title: '时间戳转换',
-                description: "时间戳转换",
+                description: '时间戳转换',
                 icon: 'icon-shijianchuo',
                 favicon: '/images/timestamp.svg',
                 path: '/timestamp',
@@ -30,7 +30,7 @@ const tools = [
             },
             {
                 title: 'JSON 格式化',
-                description: "JSON 格式化工具",
+                description: 'JSON 格式化工具',
                 icon: 'icon-json',
                 favicon: '/images/json.svg',
                 path: '/json',
@@ -38,7 +38,7 @@ const tools = [
             },
             {
                 title: 'Linux 命令查询',
-                description: "Linux 命令查询工具",
+                description: 'Linux 命令大全搜索工具，内容包含 Linux 命令手册、详解、学习、搜集',
                 icon: 'icon-linux',
                 favicon: '/images/linux.svg',
                 path: '/linux',
@@ -46,7 +46,7 @@ const tools = [
             },
             {
                 title: '颜色选择器',
-                description: "颜色选择器",
+                description: '颜色选择器',
                 icon: 'icon-yansexuanzeqi',
                 favicon: '/images/color-picker.svg',
                 path: '/color',
@@ -61,7 +61,7 @@ const tools = [
         children: [
             {
                 title: '在线表格',
-                description: "Excel 在线表格",
+                description: 'Excel 在线表格',
                 icon: 'icon-Excel',
                 favicon: '/images/excel.svg',
                 path: '/excel',
@@ -84,7 +84,7 @@ const tools = [
         children: [
             {
                 title: '思维导图',
-                description: "简单&强大的 Web 思维导图",
+                description: '简单&强大的 Web 思维导图',
                 icon: 'icon-siweidaotu',
                 favicon: '/images/xmind.png',
                 path: '/mindmap',
@@ -92,7 +92,7 @@ const tools = [
             },
             {
                 title: '流程图',
-                description: "流程图、ER图、BPMN流程",
+                description: '流程图、ER图、BPMN流程',
                 icon: 'icon-liuchengtu',
                 favicon: '/images/flow.svg',
                 path: '/logicflow',
@@ -100,15 +100,15 @@ const tools = [
             },
             {
                 title: '手绘白板',
-                description: "虚拟白板，用于勾画手绘般的图表",
+                description: '虚拟白板，用于勾画手绘般的图表',
                 icon: 'icon-huiyishi',
                 favicon: '/images/whiteboard.svg',
                 path: '/whiteboard',
                 component: '/pages/image/whiteboard'
             },
             {
-                title: '手绘签名',
-                description: "虚拟白板，用于勾画手绘般的图表",
+                title: '签名画板',
+                description: "基于 <a href='https://github.com/szimek/signature_pad' target='_blank'>Signature Pad</a> 实现的签名绘制画板",
                 icon: 'icon-huaban',
                 favicon: '/images/signature.svg',
                 path: '/signature',
@@ -124,7 +124,7 @@ const tools = [
         children: [
             // {
             //     title: '生成短视频',
-            //     description: "一键生成高清短视频",
+            //     description: '一键生成高清短视频',
             //     icon: 'icon-6zhengjianzhaopian',
             //     favicon: '/images/movie.png',
             //     path: '/movie',
@@ -132,7 +132,7 @@ const tools = [
             // },
             {
                 title: '生成证件照',
-                description: "轻量级的 AI 证件照制作",
+                description: '轻量级的 AI 证件照制作',
                 icon: 'icon-6zhengjianzhaopian',
                 favicon: '/images/idphotos.png',
                 path: '/idphotos',
@@ -140,7 +140,7 @@ const tools = [
             },
             {
                 title: '文本转图片',
-                description: "文本生成图像",
+                description: '文本生成图像',
                 icon: 'icon-image',
                 favicon: '/images/img.webp',
                 path: '/images/fooocus',
@@ -148,7 +148,7 @@ const tools = [
             },
             {
                 title: '文本转语音',
-                description: "文本转语音，支持中英文双语",
+                description: '文本转语音，支持中英文双语',
                 icon: 'icon-voice',
                 favicon: '/images/voice.png',
                 path: '/emotivoice',
@@ -164,7 +164,7 @@ const tools = [
         children: [
             {
                 title: '抖音去水印下载',
-                description: "抖音去水印批量下载用户主页作品",
+                description: '抖音去水印批量下载用户主页作品',
                 icon: 'icon-douyin',
                 favicon: '/images/douyin.svg',
                 path: '/movie',
@@ -180,7 +180,7 @@ const tools = [
         children: [
             {
                 title: '抽奖',
-                description: "大转盘/九宫格/老虎机",
+                description: '大转盘/九宫格/老虎机',
                 icon: 'icon-choujiang',
                 favicon: '/images/lottery.svg',
                 path: '/lottery',
@@ -188,7 +188,7 @@ const tools = [
             },
             {
                 title: '亲戚称谓计算器',
-                description: "大转盘/九宫格/老虎机",
+                description: '大转盘/九宫格/老虎机',
                 icon: 'icon-jisuanqilishuai',
                 favicon: '/images/calculator.svg',
                 path: '/relatives',
