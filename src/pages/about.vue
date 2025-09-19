@@ -83,6 +83,12 @@ const data = [
         avatar: 'https://wangchujiang.com/linux-command/img/favicon.ico',
         description: 'Linux 命令大全搜索工具，内容包含 Linux 命令手册、详解、学习、搜集。'
     },
+    {
+        title: 'canvas-editor',
+        url: 'https://hufe.club/canvas-editor-docs/',
+        avatar: 'https://hufe.club/canvas-editor-docs/favicon.png',
+        description: '基于 Canvas/Svg 的富文本编辑器。'
+    },
 ]
 </script>
 

@@ -47,10 +47,18 @@ const tools = [
             {
                 title: '颜色选择器',
                 description: '颜色选择器',
-                icon: 'icon-yansexuanzeqi',
+                icon: 'icon-color-picker',
                 favicon: '/images/color-picker.svg',
                 path: '/color',
                 component: '/pages/dev/color'
+            },
+            {
+                title: '图片转 Base64 编码',
+                description: '图片/Base64 编码互转',
+                icon: 'icon-base64',
+                favicon: '/images/base64.svg',
+                path: '/base64',
+                component: '/pages/dev/base64'
             }
         ]
     },
@@ -62,10 +70,18 @@ const tools = [
             {
                 title: '在线表格',
                 description: 'Excel 在线表格',
-                icon: 'icon-Excel',
+                icon: 'icon-excel',
                 favicon: '/images/excel.svg',
                 path: '/excel',
                 component: '/pages/document/excel'
+            },
+            {
+                title: 'Word 文档编辑器',
+                description: 'Word 文档编辑器',
+                icon: 'icon-word',
+                favicon: '/images/word.svg',
+                path: '/word',
+                component: '/pages/document/word'
             },
             {
                 title: '富文本编辑器',
@@ -113,6 +129,14 @@ const tools = [
                 favicon: '/images/signature.svg',
                 path: '/signature',
                 component: '/pages/image/signature'
+            },
+            {
+                title: '二维码生成器',
+                description: '二维码生成',
+                icon: 'icon-qr',
+                favicon: '/images/qr.svg',
+                path: '/qr',
+                component: '/pages/image/qr'
             },
         ]
     },
@@ -193,6 +217,14 @@ const tools = [
                 favicon: '/images/calculator.svg',
                 path: '/relatives',
                 component: '/pages/other/relative'
+            },
+            {
+                title: '烟花',
+                description: '',
+                icon: 'icon-firework',
+                favicon: '/images/firework.svg',
+                path: '/firework',
+                component: '/pages/other/firework'
             },
         ]
     },

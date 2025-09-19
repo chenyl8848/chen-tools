@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
+    "@fireworks-js/vue": "^2.10.8",
+    "@hufe921/canvas-editor": "^0.9.116",
+    "@hufe921/canvas-editor-plugin-docx": "^0.0.5",
     "@logicflow/core": "^2.0.3",
     "@logicflow/extension": "^2.0.7",
     "@lucky-canvas/vue": "^0.1.11",
@@ -34,10 +37,11 @@
     "markdown-it": "^14.1.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.2.2",
+    "qrcanvas-vue": "^3.0.0",
     "signature_pad": "^5.1.0",
     "simple-mind-map": "^0.11.0",
     "vditor": "^3.11.1",
-    "vue": "^3.4.37",
+    "vue": "^3.5.21",
     "vue-color": "^3.3.2",
     "vue-json-pretty": "^2.5.0",
     "vue-router": "^4.4.3"

@@ -8,7 +8,7 @@ import { initRoutes } from '@/utils/permission'
 
 import { createFromIconfontCN } from '@ant-design/icons-vue'
 const IconFont = createFromIconfontCN({
-    scriptUrl: '//at.alicdn.com/t/c/font_4676471_8nevc2evs0b.js'
+    scriptUrl: '//at.alicdn.com/t/c/font_4676471_9jwp043l38a.js'
 })
 import ToolHeader from '@/components/ToolHeader.vue'
 

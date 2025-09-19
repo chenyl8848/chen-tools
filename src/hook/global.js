@@ -15,8 +15,30 @@ export const useMobile = () => {
     const isMobile =
         /iphone|ipod|android|ios|ipad|blackberry|webos|symbian|windows phone|phone/i.test(
             userAgent
-        );
+        )
 
-    
     return isMobile
+}
+
+export const useFullScreen = (container) => {
+
+    // let isFullScreen = document.fullscreenElement | document.webkitIsFullScreen | document.mozFullScreen | false
+    let isFullScreen = document.fullscreenEnabled && document.fullscreenElement !== null
+
+    const fullScreen = () => {
+        // 进入全屏
+        if (container.value.requestFullscreen) {
+            container.value.requestFullscreen();
+        } else if (container.value.webkitRequestFullScreen) {
+            container.value.webkitRequestFullScreen();
+        } else if (container.value.mozRequestFullScreen) {
+            container.value.mozRequestFullScreen();
+        } else if (container.value.msRequestFullscreen) {
+            // IE11
+            container.value.msRequestFullscreen();
+        }
+
+    }
+
+    return [isFullScreen, fullScreen]
 }
