@@ -186,7 +186,7 @@ const importDataURL = (file) => {
         dataURL = base64String
         // 你可以在这里进行进一步的处理，例如存储或显示图片
         signaturePad.value.fromDataURL(dataURL)
-    };
+    }
     reader.readAsDataURL(file)
 
     return false

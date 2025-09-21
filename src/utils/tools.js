@@ -138,6 +138,14 @@ const tools = [
                 path: '/qr',
                 component: '/pages/image/qr'
             },
+            {
+                title: '图片裁剪',
+                description: '图片裁剪',
+                icon: 'icon-qr',
+                favicon: '/images/qr.svg',
+                path: '/crop',
+                component: '/pages/image/crop'
+            },
         ]
     },
     {
