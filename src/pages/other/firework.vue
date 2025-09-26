@@ -4,11 +4,12 @@
         <div ref="fireworkContainerRef" class="firework-container">
 
         </div>
-        <div style="display: flex;justify-content: center;align-items: center;">
+        <div class="btn-container">
             <a-space class="mgt-20">
                 <a-button type="primary" @click="fullScreen" :icon="h(FullscreenOutlined)">全屏</a-button>
                 <a-button type="primary" @click="pause" :icon="h(PlayCircleOutlined)">开始/暂停</a-button>
                 <a-button type="primary" @click="clear" :icon="h(ClearOutlined)">清空</a-button>
+                <a-button type="primary" @click="sound" :icon="h(ClearOutlined)">声音</a-button>
             </a-space>
         </div>
     </a-card>
@@ -22,6 +23,7 @@ import { useFullScreen } from '@/hook/global'
 
 const fireworkContainerRef = ref()
 const fireworks = ref()
+const openSound = ref()
 
 const initFirework = () => {
 
@@ -75,16 +77,25 @@ const initFirework = () => {
         }
     })
     fireworks.value.start()
+
+    openSound.value = fireworks.value.currentOptions.sound.enabled
 }
 
 const [isFullScreen, fullScreen] = useFullScreen(fireworkContainerRef)
 
 const pause = () => {
-    fireworks.value.pause()
+    const value = fireworks.value.pause()
 }
 
 const clear = () => {
     fireworks.value.clear()
+}
+
+const sound = () => {
+    console.log(fireworks.value.currentOptions, openSound.value)
+    fireworks.value.updateOptions({ ...fireworks.value.currentOptions, sound: { enabled: !openSound.value } })
+    openSound.value = !openSound.value
+    console.log(fireworks.value.currentOptions, openSound.value)
 }
 
 onMounted(() => {
@@ -96,5 +107,11 @@ onMounted(() => {
 .firework-container {
     height: calc(100vh - 350px);
     background-color: black;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

@@ -234,6 +234,14 @@ const tools = [
                 path: '/firework',
                 component: '/pages/other/firework'
             },
+            {
+                title: '完结撒花',
+                description: '',
+                icon: 'icon-firework',
+                favicon: '/images/firework.svg',
+                path: '/confetti',
+                component: '/pages/other/confetti'
+            },
         ]
     },
     {

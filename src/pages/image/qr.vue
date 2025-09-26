@@ -1,9 +1,9 @@
 <template>
     <a-card>
         <tool-header />
-        <div class="qrContainer">
-            <div class="column1">
-                <a-form :model="options" :label-col="{ style: { width: '90px', marginRight: '12px' } }">
+        <splitpanes>
+            <pane size="50">
+                <a-form :model="options" :label-col="{ style: { width: '70px', marginRight: '12px' } }">
                     <a-form-item label="内容">
                         <!-- <a-input v-model:value="options.data" placeholder="input placeholder" allowClear /> -->
                         <a-textarea v-model:value="options.data" :auto-size="{ minRows: 4, maxRows: 4 }"
@@ -16,16 +16,40 @@
                         <a-slider v-model:value="options.padding" :min="1" :max="30" />
                     </a-form-item>
                     <a-form-item label="colorFore">
-                        <SliderPicker v-model="colorFore"></SliderPicker>
+                        <!-- <SliderPicker v-model="colorFore"></SliderPicker> -->
+                        <a-popover>
+                            <template #content>
+                                <SketchPicker v-model="colorFore"></SketchPicker>
+                            </template>
+                            <a-button :style="{ width: '50%', backgroundColor: colorFore }"></a-button>
+                        </a-popover>
                     </a-form-item>
                     <a-form-item label="colorOut">
-                        <SliderPicker v-model="colorOut"></SliderPicker>
+                        <!-- <SliderPicker v-model="colorOut"></SliderPicker> -->
+                        <a-popover>
+                            <template #content>
+                                <SketchPicker v-model="colorOut"></SketchPicker>
+                            </template>
+                            <a-button :style="{ width: '50%', backgroundColor: colorOut }"></a-button>
+                        </a-popover>
                     </a-form-item>
                     <a-form-item label="colorIn">
-                        <SliderPicker v-model="colorIn"></SliderPicker>
+                        <!-- <SliderPicker v-model="colorIn"></SliderPicker> -->
+                        <a-popover>
+                            <template #content>
+                                <SketchPicker v-model="colorIn"></SketchPicker>
+                            </template>
+                            <a-button :style="{ width: '50%', backgroundColor: colorIn }"></a-button>
+                        </a-popover>
                     </a-form-item>
                     <a-form-item label="背景颜色">
-                        <SliderPicker v-model="options.background"></SliderPicker>
+                        <!-- <SliderPicker v-model="options.background"></SliderPicker> -->
+                        <a-popover>
+                            <template #content>
+                                <SketchPicker v-model="options.background"></SketchPicker>
+                            </template>
+                            <a-button :style="{ width: '50%', backgroundColor: options.background }"></a-button>
+                        </a-popover>
                     </a-form-item>
                     <a-form-item label="Logo">
                         <a-switch v-model:checked="checked" @change="addLogo" />
@@ -49,28 +73,46 @@
                                 <a-slider v-model:value="textLogo.options.pad" :min="10" :max="100" />
                             </a-form-item>
                             <a-form-item label="字体颜色">
-                                <SliderPicker v-model="textLogo.options.color"></SliderPicker>
+                                <!-- <SliderPicker v-model="textLogo.options.color"></SliderPicker> -->
+                                <a-popover>
+                                    <template #content>
+                                        <SketchPicker v-model="textLogo.options.color"></SketchPicker>
+                                    </template>
+                                    <a-button
+                                        :style="{ width: '50%', backgroundColor: textLogo.options.color }"></a-button>
+                                </a-popover>
                             </a-form-item>
                             <a-form-item label="背景颜色">
-                                <SliderPicker v-model="textLogo.options.padColor"></SliderPicker>
+                                <!-- <SliderPicker v-model="textLogo.options.padColor"></SliderPicker> -->
+                                <a-popover>
+                                    <template #content>
+                                        <SketchPicker v-model="textLogo.options.padColor"></SketchPicker>
+                                    </template>
+                                    <a-button
+                                        :style="{ width: '50%', backgroundColor: textLogo.options.padColor }"></a-button>
+                                </a-popover>
                             </a-form-item>
                         </a-tab-pane>
                     </a-tabs>
                 </a-form>
-            </div>
-            <div class="column2">
-                <QRCanvas :options="options" id="qr-canvans"></QRCanvas>
-                <a-button type="primary" :icon="h(SaveOutlined)" @click="save">保存</a-button>
-            </div>
-        </div>
+            </pane>
+            <pane size="50">
+                <div class="qr-container">
+                    <QRCanvas :options="options" id="qr-canvans"></QRCanvas>
+                    <a-button type="primary" :icon="h(SaveOutlined)" @click="save" class="mgt-20">保存</a-button>
+                </div>
+            </pane>
+        </splitpanes>
     </a-card>
 </template>
 
 <script setup>
 import { ref, h } from 'vue'
 import { QRCanvas } from 'qrcanvas-vue'
-import { SliderPicker } from 'vue-color'
+import { SketchPicker, SliderPicker } from 'vue-color'
 import { SaveOutlined } from '@ant-design/icons-vue'
+import { Splitpanes, Pane } from 'splitpanes'
+import 'splitpanes/dist/splitpanes.css'
 
 const colorFore = ref('black')
 const colorOut = ref('black')
@@ -191,34 +233,21 @@ const changeLogo = (key) => {
 }
 
 const save = () => {
-    const canvas = document.getElementById("qr-canvans");
-    const link = document.createElement("a");
-    link.href = canvas.toDataURL("image/png"); // 将canvas转为Base64格式的图片数据URL
-    link.download = "canvas.png"; // 设置下载的文件名
-    link.click(); // 触发下载
+    const canvas = document.getElementById("qr-canvans")
+    const link = document.createElement("a")
+    // 将canvas转为Base64格式的图片数据URL
+    link.href = canvas.toDataURL("image/png")
+    // 设置下载的文件名
+    link.download = `qr-${new Date().getTime()}.png`
+    // 触发下载
+    link.click()
 }
 
 </script>
 
 <style lang="scss" scoped>
-.qrContainer {
-    display: flex;
-    // justify-content: space-between;
-    width: 100%;
-
-    .cloumn1 {
-        /* 占据四分之三的空间 */
-        flex: 1;
-        display: flex;
-        justify-content: flex-start;
-    }
-
-    .cloumn2 {
-        /* 占据四分之一的空间 */
-        flex: 1;
-        display: flex;
-        justify-content: center;
-    }
-
+.qr-container {
+    display: grid;
+    justify-content: center;
 }
 </style>

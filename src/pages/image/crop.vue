@@ -1,33 +1,37 @@
 <template>
     <a-card>
         <tool-header />
-        <div class="cropper-container">
-            <div class="left">
-                <img :src="imageUrl" alt="avatar" ref="imageRef" />
-                <!-- <a-upload v-model:file-list="fileList" name="avatar" list-type="picture-card"
-                    :show-upload-list="false"
-                    :before-upload="beforeUpload">
-                </a-upload> -->
-                <a-upload v-model:file-list="fileList" list-type="picture" :show-upload-list="false"
-                    :before-upload="beforeUpload">
-                    <a-button>
-                        <upload-outlined></upload-outlined>
-                        上传
-                    </a-button>
-                </a-upload>
-            </div>
-            <div class="right">
-                <a-image :width="200" :src="previewImageUrl" />
-            </div>
-        </div>
-        <a-button @click="crop">裁剪</a-button>
-        <a-button @click="save">保存</a-button>
+        <splitpanes>
+            <pane size="50">
+                <div class="crop-container">
+                    <img :src="imageUrl" alt="avatar" ref="imageRef" />
+                </div>
+                <a-space class="mgt-20">
+                    <a-upload v-model:file-list="fileList" list-type="picture" :show-upload-list="false"
+                        :before-upload="beforeUpload">
+                        <a-button>
+                            <upload-outlined></upload-outlined>
+                            上传
+                        </a-button>
+                    </a-upload>
+                    <a-button @click="crop">裁剪</a-button>
+                    <a-button @click="save">保存</a-button>
+                </a-space>
+            </pane>
+            <pane>
+                <div class="preview-container">
+                    <a-image :width="400" :src="previewImageUrl" />
+                </div>
+            </pane>
+        </splitpanes>
     </a-card>
 </template>
 
 <script setup>
 import Cropper from 'cropperjs'
 import { onMounted, ref, watch } from 'vue'
+import { Splitpanes, Pane } from 'splitpanes'
+import 'splitpanes/dist/splitpanes.css'
 
 const imageUrl = ref('/public/images/tools.png')
 const imageRef = ref()
@@ -93,7 +97,8 @@ const save = async () => {
     // 点击下载
     const link = document.createElement('a')
     link.href = previewImageUrl.value
-    link.download = 'cropped-image.jpg'
+    // link.download = 'cropped-image.jpg'
+    link.download = `cropp-${new Date().getTime()}.png`
     link.click()
 }
 
@@ -103,26 +108,18 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.cropper-container {
+.crop-container {
+    :deep(cropper-canvas) {
+        height: 360px;
+        // height: calc(100vh - 260px);
+    }
+}
+
+.preview-container {
     display: flex;
-    // justify-content: center;
-    // align-items: center;
-
-    .left {
-        flex: 1;
-        border: 1px solid var(--vp-c-divider);
-        border-radius: 0.375rem;
-        margin-bottom: 1rem;
-        margin-top: 1rem;
-        padding: 1.25rem 1.5rem;
-
-        :deep(cropper-canvas) {
-            height: 360px;
-        }
-    }
-
-    .right {
-        flex: 1;
-    }
+    align-items: center;
+    justify-content: center;
+    height: 360px;
+    // height: calc(100vh - 260px);
 }
 </style>
