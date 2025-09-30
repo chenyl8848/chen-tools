@@ -85,6 +85,7 @@ npm run build
 - [canvas-editor](https://github.com/Hufe921/canvas-editor) - 基于 `Canvas/Svg` 的富文本编辑器。
 - [qrcanvas](https://github.com/gera2ld/qrcanvas) - 基于 `Canvas` 生成二维码。
 - [fireworks-js](https://github.com/crashmax-dev/fireworks-js) - 一个简单的烟花库。
+- [Countable](https://github.com/RadLikeWhoa/Countable) - 一个 `JavaScript` 函数，用于统计段落、字数和字符。
 
 ## 其他项目
 

@@ -26,11 +26,11 @@ const settingStore = useSettingStore()
 <style lang="scss">
 .ant-layout {
     min-height: 100vh;
-    background-color: #f5f5f5;
+    background-color: $layoutBackgroundColor;
 
     .ant-layout-sider {
 
-        background-color: #f5f5f5;
+        background-color: $sidebarBackgroundColor;
         min-width: 240px;
         max-width: 240px;
 
@@ -45,7 +45,7 @@ const settingStore = useSettingStore()
     }
 
     .ant-layout-header {
-        background-color: #f5f5f5;
+        background-color: $headerBackgroundColor;
         // min-height: 72px;
         padding-inline: 0px;
         padding: 20px;

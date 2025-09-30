@@ -53,7 +53,7 @@ const tools = [
                 component: '/pages/dev/color'
             },
             {
-                title: '图片转 Base64 编码',
+                title: '图片/Base64转换',
                 description: '图片/Base64 编码互转',
                 icon: 'icon-base64',
                 favicon: '/images/base64.svg',
@@ -68,15 +68,15 @@ const tools = [
         path: '/document',
         children: [
             {
-                title: '在线表格',
-                description: 'Excel 在线表格',
+                title: 'Excel 表格',
+                description: 'Excel 表格编辑器',
                 icon: 'icon-excel',
                 favicon: '/images/excel.svg',
                 path: '/excel',
                 component: '/pages/document/excel'
             },
             {
-                title: 'Word 文档编辑器',
+                title: 'Word 文档',
                 description: 'Word 文档编辑器',
                 icon: 'icon-word',
                 favicon: '/images/word.svg',
@@ -90,7 +90,15 @@ const tools = [
                 favicon: '/images/markdown.svg',
                 path: '/markdown',
                 component: '/pages/document/markdown'
-            }
+            },
+            {
+                title: '字数统计',
+                description: "在线统计文本的段落、句子、单词、字符数量",
+                icon: 'icon-countable',
+                favicon: '/images/countable.svg',
+                path: '/countable',
+                component: '/pages/document/countable'
+            },
         ]
     },
     {
@@ -141,8 +149,8 @@ const tools = [
             {
                 title: '图片裁剪',
                 description: '图片裁剪',
-                icon: 'icon-qr',
-                favicon: '/images/qr.svg',
+                icon: 'icon-crop',
+                favicon: '/images/crop.svg',
                 path: '/crop',
                 component: '/pages/image/crop'
             },
@@ -237,8 +245,8 @@ const tools = [
             {
                 title: '完结撒花',
                 description: '',
-                icon: 'icon-firework',
-                favicon: '/images/firework.svg',
+                icon: 'icon-confetti',
+                favicon: '/images/confetti.svg',
                 path: '/confetti',
                 component: '/pages/other/confetti'
             },

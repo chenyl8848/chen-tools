@@ -52,6 +52,7 @@
   "devDependencies": {
     "@types/nprogress": "^0.2.3",
     "@vitejs/plugin-vue": "^5.1.2",
+    "countable": "^3.0.1",
     "sass": "^1.78.0",
     "sass-loader": "^16.0.1",
     "vite": "^5.4.1",

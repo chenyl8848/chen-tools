@@ -6,7 +6,7 @@
                 <a-form :model="options" :label-col="{ style: { width: '70px', marginRight: '12px' } }">
                     <a-form-item label="内容">
                         <!-- <a-input v-model:value="options.data" placeholder="input placeholder" allowClear /> -->
-                        <a-textarea v-model:value="options.data" :auto-size="{ minRows: 4, maxRows: 4 }"
+                        <a-textarea v-model:value="options.data" :auto-size="{ minRows: 2, maxRows: 2 }"
                             placeholder="请输入内容" allowClear />
                     </a-form-item>
                     <a-form-item label="大小">
@@ -109,7 +109,7 @@
 <script setup>
 import { ref, h } from 'vue'
 import { QRCanvas } from 'qrcanvas-vue'
-import { SketchPicker, SliderPicker } from 'vue-color'
+import { SketchPicker } from 'vue-color'
 import { SaveOutlined } from '@ant-design/icons-vue'
 import { Splitpanes, Pane } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'

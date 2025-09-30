@@ -57,7 +57,7 @@ const routerJump = (menu) => {
 }
 
 const $route = useRoute()
-watch(() => $route.path, (newValue) => { 
+watch(() => $route.path, (newValue) => {
     openKeys.value = []
     selectedKeys.value = []
     const parentTool = getParentTool(newValue)
@@ -83,7 +83,8 @@ watch(() => $route.path, (newValue) => {
 }
 
 .ant-menu {
-    background-color: #f5f5f5;
+    // background-color: #f5f5f5;
+    background-color: $sidebarBackgroundColor;
 }
 
 .ant-menu-light .ant-menu-item-selected {

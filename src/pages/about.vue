@@ -1,7 +1,6 @@
 <template>
     <a-card>
         <tool-header></tool-header>
-        {{ isMobile }}
         <p>
             <a href="https://github.com/chenyl8848/chen-tools" target="_blank">Chen-Tools</a>
             是一款开源免费的在线工具箱，包含开发、文档、作图、媒体、生活等实用工具；如果对您有帮助，请将其分享给您的朋友，并且添加到收藏夹中！顺便再点个⭐️吧！

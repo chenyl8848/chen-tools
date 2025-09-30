@@ -1,7 +1,7 @@
 <template>
     <a-card>
         <tool-header />
-        <div ref="wordContainerRef">
+        <div ref="wordContainerRef" class="word-container">
 
         </div>
     </a-card>
@@ -298,3 +298,11 @@ onMounted(() => {
     console.log(word.value)
 })
 </script>
+
+<style lang="scss" scoped>
+.word-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>

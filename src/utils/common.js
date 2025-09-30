@@ -1,6 +1,5 @@
 import { useClipboard } from '@vueuse/core'
 import { message } from 'ant-design-vue'
-import fs from 'fs'
 
 export const copyText = (text) => {
     const { copy, isSupported } = useClipboard({ text })
