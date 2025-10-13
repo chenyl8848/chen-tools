@@ -49,8 +49,8 @@
                     :beforeUpload="importData">
                     <a-button type="primary" :icon="h(ImportOutlined)">导入</a-button>
                 </a-upload>
-                <a-upload v-model:file-list="imageFile" :max-count="1" accept=".png,.jpeg,.svg" :showUploadList="false"
-                    :beforeUpload="importDataURL">
+                <a-upload v-model:file-list="imageFile" :max-count="1" accept=".png,.jpeg,.jpg,.svg"
+                    :showUploadList="false" :beforeUpload="importDataURL">
                     <a-button type="primary" :icon="h(UploadOutlined)">上传</a-button>
                 </a-upload>
             </a-space>
@@ -65,6 +65,7 @@ import SignaturePad from 'signature_pad'
 import { downloadBase64Image, downloadJSONData } from '@/utils/common'
 import { ChromePicker, CompactPicker, tinycolor } from 'vue-color'
 import { UndoOutlined, RedoOutlined, ClearOutlined, FontColorsOutlined, FontSizeOutlined, BgColorsOutlined, SaveOutlined, ExportOutlined, ImportOutlined, UploadOutlined } from '@ant-design/icons-vue'
+import { message } from 'ant-design-vue'
 
 const signaturePad = ref()
 let data = []
@@ -165,10 +166,15 @@ const importData = (file) => {
     reader.onload = (e) => {
         // 文件内容，例如文本文件的内容会是字符串形式
         const content = e.target.result
-        // 在这里处理文件内容，例如解析JSON等
-        data = JSON.parse(content)
-        // 此处可以根据需要处理文件内容，例如发送到服务器等
-        signaturePad.value.fromData(data)
+        try {
+            // 在这里处理文件内容，例如解析JSON等
+            data = JSON.parse(content)
+            // 此处可以根据需要处理文件内容，例如发送到服务器等
+            signaturePad.value.fromData(data)
+        } catch (error) {
+            console.log(error)
+            message.error('请上传正确的 JSON 文件！')
+        }
     };
     // 以文本形式读取文件内容，如果是其他类型文件，可以选择其他方法如readAsDataURL等
     reader.readAsText(file)
@@ -179,17 +185,22 @@ const importData = (file) => {
 
 const importDataURL = (file) => {
     // signaturePad.value.fromDataURL(dataURL)
-    const reader = new FileReader()
-    reader.onload = (e) => {
-        // 这里是Base64编码的字符串
-        const base64String = e.target.result
-        dataURL = base64String
-        // 你可以在这里进行进一步的处理，例如存储或显示图片
-        signaturePad.value.fromDataURL(dataURL)
-    }
-    reader.readAsDataURL(file)
+    if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+            // 这里是Base64编码的字符串
+            const base64String = e.target.result
+            dataURL = base64String
+            // 你可以在这里进行进一步的处理，例如存储或显示图片
+            signaturePad.value.fromDataURL(dataURL)
+        }
+        reader.readAsDataURL(file)
 
-    return false
+        return false
+    } else {
+        message.error('请上传图片文件！')
+        return false
+    }
 }
 
 onMounted(() => {

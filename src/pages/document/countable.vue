@@ -1,6 +1,6 @@
 <template>
-    <tool-header></tool-header>
     <a-card>
+        <tool-header></tool-header>
         <a-textarea v-model:value="text" placeholder="请输入文本内容" :auto-size="{ minRows: 12, maxRows: 15 }" allowClear
             id="text">
         </a-textarea>

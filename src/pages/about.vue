@@ -37,7 +37,7 @@ const data = [
     {
         title: 'Ant Design Vue',
         url: 'https://antdv.com/components/overview-cn',
-        avatar: 'https://next.antdv.com/assets/logo.1ef800a8.svg',
+        avatar: 'https://antdv.com/assets/logo.1ef800a8.svg',
         description: 'Ant Design 的 Vue 实现，开发和服务于企业级后台产品。'
     },
     {
@@ -87,6 +87,12 @@ const data = [
         url: 'https://hufe.club/canvas-editor-docs/',
         avatar: 'https://hufe.club/canvas-editor-docs/favicon.png',
         description: '基于 Canvas/Svg 的富文本编辑器。'
+    },
+    {
+        title: 'pinyin',
+        url: 'https://pinyin.js.org/index.html',
+        avatar: 'https://pinyin.js.org/logo.png',
+        description: 'pīnyīn, 中文汉字拼音转换工具。'
     },
 ]
 </script>

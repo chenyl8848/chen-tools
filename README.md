@@ -16,17 +16,20 @@
   - [x] JSON 格式化
   - [x] Linux 命令查询
   - [x] 颜色选择器
-  - [ ] 图片转 Base64 编码
+  - [x] 图片/Base64转换
 - 文档工具
   - [ ] 在线表格
   - [ ] Word 文档编辑器
   - [x] 富文本编辑器
+  - [x] 字数统计
+  - [x] 拼音转换
 - 作图工具
   - [x] 思维导图
   - [x] 流程图
   - [ ] 手绘白板
   - [x] 签名画板
   - [ ] 二维码生成器
+  - [ ] 图片裁剪
 - AI 工具
   - [ ] 生成证件照
   - [ ] 文本转图片
@@ -37,6 +40,7 @@
   - [ ] 抽奖
   - [ ] 亲戚称谓计算器
   - [ ] 烟花
+  - [ ] 完结撒花
 
 ## 本地开发
 
@@ -86,6 +90,7 @@ npm run build
 - [qrcanvas](https://github.com/gera2ld/qrcanvas) - 基于 `Canvas` 生成二维码。
 - [fireworks-js](https://github.com/crashmax-dev/fireworks-js) - 一个简单的烟花库。
 - [Countable](https://github.com/RadLikeWhoa/Countable) - 一个 `JavaScript` 函数，用于统计段落、字数和字符。
+- [pinyin](https://github.com/hotoo/pinyin) - 一个 `JavaScript` 函数，用于中文汉字拼音转换。
 
 ## 其他项目
 

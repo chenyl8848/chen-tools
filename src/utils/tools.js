@@ -93,11 +93,19 @@ const tools = [
             },
             {
                 title: '字数统计',
-                description: "在线统计文本的段落、句子、单词、字符数量",
+                description: "在线统计文本的段落、句子、单词、字符数量。",
                 icon: 'icon-countable',
                 favicon: '/images/countable.svg',
                 path: '/countable',
                 component: '/pages/document/countable'
+            },
+            {
+                title: '拼音转换',
+                description: "转换中文字符为拼音，可以用于汉字注音、排序、检索。",
+                icon: 'icon-pinyin',
+                favicon: '/images/pinyin.svg',
+                path: '/pinyin',
+                component: '/pages/document/pinyin'
             },
         ]
     },

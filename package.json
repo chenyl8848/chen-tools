@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
+    "@dicebear/collection": "^9.2.4",
+    "@dicebear/core": "^9.2.4",
     "@fireworks-js/vue": "^2.10.8",
     "@hufe921/canvas-editor": "^0.9.116",
     "@hufe921/canvas-editor-plugin-docx": "^0.0.5",
@@ -39,6 +41,7 @@
     "markdown-it": "^14.1.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.2.2",
+    "pinyin": "^4.0.0",
     "qrcanvas-vue": "^3.0.0",
     "signature_pad": "^5.1.0",
     "simple-mind-map": "^0.11.0",

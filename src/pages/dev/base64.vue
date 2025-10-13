@@ -5,12 +5,12 @@
             <a-col :span="9">
                 <div class="image-container">
                     <a-upload v-model:file-list="fileList" name="avatar" :show-upload-list="false"
-                        :before-upload="beforeUpload">
-                        <img v-if="imageUrl" :src="imageUrl" alt="avatar" style="width: 450px;height: 270px" />
+                        :before-upload="beforeUpload" accept=".png,.jpeg,.jpg,.webp,.svg,.ico">
+                        <img v-if="imageUrl" :src="imageUrl" alt="avatar" style="max-width: 100%;height: auto" />
                         <div v-else>
                             <div class="upload-container">
                                 <!-- <plus-outlined></plus-outlined> -->
-                                <CloudUploadOutlined style="font-size: 24px"/>
+                                <CloudUploadOutlined style="font-size: 24px" />
                             </div>
                         </div>
                     </a-upload>
@@ -20,11 +20,12 @@
                 <a-space direction="vertical" size="large">
                     <a-button type="primary" :icon="h(ArrowLeftOutlined)" @click="convert">转换</a-button>
                     <a-button type="primary" :icon="h(CopyOutlined)" @click="copyText(imageBase64)">复制</a-button>
+                    <a-button type="primary" danger :icon="h(ClearOutlined)" @click="clear">清空</a-button>
                 </a-space>
             </a-col>
             <a-col :span="12">
                 <a-textarea v-model:value="imageBase64" placeholder="请输入 Base64 字符串"
-                    :auto-size="{ minRows: 12, maxRows: 15 }" allowClear>
+                    :auto-size="{ minRows: 15, maxRows: 18 }">
                 </a-textarea>
             </a-col>
         </a-row>
@@ -33,28 +34,38 @@
 
 <script setup>
 import { ref, h } from 'vue'
-import { ArrowLeftOutlined, CopyOutlined } from '@ant-design/icons-vue'
+import { ArrowLeftOutlined, CopyOutlined, ClearOutlined } from '@ant-design/icons-vue'
 import { copyText } from '@/utils/common'
+import { message } from 'ant-design-vue'
 
 const imageUrl = ref('')
 const imageBase64 = ref('')
 
 const fileList = ref([])
 const beforeUpload = (file) => {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-        // 这里是Base64编码的字符串
-        const base64String = e.target.result
-        imageUrl.value = base64String
-        imageBase64.value = base64String
-    }
-    reader.readAsDataURL(file)
+    if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+            // 这里是Base64编码的字符串
+            const base64String = e.target.result
+            imageUrl.value = base64String
+            imageBase64.value = base64String
+        }
+        reader.readAsDataURL(file)
 
-    return false
+        return false
+    } else {
+        message.error('请上传图片文件！')
+        return false
+    }
 }
 
 const convert = () => {
     imageUrl.value = imageBase64.value
+}
+
+const clear = () => {
+    imageBase64.value = ''
 }
 </script>
 
