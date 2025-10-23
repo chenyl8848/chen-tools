@@ -5,6 +5,14 @@ const tools = [
         path: '/dev',
         children: [
             {
+                title: '代码编辑器',
+                description: '在线代码编辑器',
+                icon: 'icon-code',
+                favicon: '/images/code.svg',
+                path: '/code',
+                component: '/pages/dev/code'
+            },
+            {
                 title: 'URL 编码解码',
                 description: 'URL 编码解码',
                 icon: 'icon-Url',
@@ -63,6 +71,37 @@ const tools = [
         ]
     },
     {
+        title: '文本工具',
+        icon: 'icon-wendanggongju',
+        path: '/text',
+        children: [
+            {
+                title: '字数统计',
+                description: "在线统计文本的段落、句子、单词、字符数量。",
+                icon: 'icon-countable',
+                favicon: '/images/countable.svg',
+                path: '/countable',
+                component: '/pages/text/countable'
+            },
+            {
+                title: '文本比对',
+                description: "比对文本差异。",
+                icon: 'icon-compare',
+                favicon: '/images/compare.svg',
+                path: '/compare',
+                component: '/pages/text/compare'
+            },
+            {
+                title: '拼音转换',
+                description: "转换中文字符为拼音，可以用于汉字注音、排序、检索。",
+                icon: 'icon-pinyin',
+                favicon: '/images/pinyin.svg',
+                path: '/pinyin',
+                component: '/pages/text/pinyin'
+            },
+        ]
+    },
+    {
         title: '文档工具',
         icon: 'icon-wendanggongju',
         path: '/document',
@@ -90,22 +129,6 @@ const tools = [
                 favicon: '/images/markdown.svg',
                 path: '/markdown',
                 component: '/pages/document/markdown'
-            },
-            {
-                title: '字数统计',
-                description: "在线统计文本的段落、句子、单词、字符数量。",
-                icon: 'icon-countable',
-                favicon: '/images/countable.svg',
-                path: '/countable',
-                component: '/pages/document/countable'
-            },
-            {
-                title: '拼音转换',
-                description: "转换中文字符为拼音，可以用于汉字注音、排序、检索。",
-                icon: 'icon-pinyin',
-                favicon: '/images/pinyin.svg',
-                path: '/pinyin',
-                component: '/pages/document/pinyin'
             },
         ]
     },
@@ -164,62 +187,62 @@ const tools = [
             },
         ]
     },
-    {
-        title: 'AI 工具',
-        // icon: 'BulbOutlined',
-        icon: 'icon-wuguan',
-        path: '/ai',
-        children: [
-            // {
-            //     title: '生成短视频',
-            //     description: '一键生成高清短视频',
-            //     icon: 'icon-6zhengjianzhaopian',
-            //     favicon: '/images/movie.png',
-            //     path: '/movie',
-            //     component: '/pages/ai/movie'
-            // },
-            {
-                title: '生成证件照',
-                description: '轻量级的 AI 证件照制作',
-                icon: 'icon-6zhengjianzhaopian',
-                favicon: '/images/idphotos.png',
-                path: '/idphotos',
-                component: '/pages/ai/idphotos'
-            },
-            {
-                title: '文本转图片',
-                description: '文本生成图像',
-                icon: 'icon-image',
-                favicon: '/images/img.webp',
-                path: '/images/fooocus',
-                component: '/pages/ai/fooocus'
-            },
-            {
-                title: '文本转语音',
-                description: '文本转语音，支持中英文双语',
-                icon: 'icon-voice',
-                favicon: '/images/voice.png',
-                path: '/emotivoice',
-                component: '/pages/ai/emotivoice'
-            },
-        ]
-    },
-    {
-        title: '媒体工具',
-        // icon: 'BulbOutlined',
-        icon: 'icon-lanmuzimeiti',
-        path: '/media',
-        children: [
-            {
-                title: '抖音去水印下载',
-                description: '抖音去水印批量下载用户主页作品',
-                icon: 'icon-douyin',
-                favicon: '/images/douyin.svg',
-                path: '/movie',
-                component: '/pages/media/douyin'
-            }
-        ]
-    },
+    // {
+    //     title: 'AI 工具',
+    //     // icon: 'BulbOutlined',
+    //     icon: 'icon-wuguan',
+    //     path: '/ai',
+    //     children: [
+    //         // {
+    //         //     title: '生成短视频',
+    //         //     description: '一键生成高清短视频',
+    //         //     icon: 'icon-6zhengjianzhaopian',
+    //         //     favicon: '/images/movie.png',
+    //         //     path: '/movie',
+    //         //     component: '/pages/ai/movie'
+    //         // },
+    //         {
+    //             title: '生成证件照',
+    //             description: '轻量级的 AI 证件照制作',
+    //             icon: 'icon-6zhengjianzhaopian',
+    //             favicon: '/images/idphotos.png',
+    //             path: '/idphotos',
+    //             component: '/pages/ai/idphotos'
+    //         },
+    //         {
+    //             title: '文本转图片',
+    //             description: '文本生成图像',
+    //             icon: 'icon-image',
+    //             favicon: '/images/img.webp',
+    //             path: '/images/fooocus',
+    //             component: '/pages/ai/fooocus'
+    //         },
+    //         {
+    //             title: '文本转语音',
+    //             description: '文本转语音，支持中英文双语',
+    //             icon: 'icon-voice',
+    //             favicon: '/images/voice.png',
+    //             path: '/emotivoice',
+    //             component: '/pages/ai/emotivoice'
+    //         },
+    //     ]
+    // },
+    // {
+    //     title: '媒体工具',
+    //     // icon: 'BulbOutlined',
+    //     icon: 'icon-lanmuzimeiti',
+    //     path: '/media',
+    //     children: [
+    //         {
+    //             title: '抖音去水印下载',
+    //             description: '抖音去水印批量下载用户主页作品',
+    //             icon: 'icon-douyin',
+    //             favicon: '/images/douyin.svg',
+    //             path: '/movie',
+    //             component: '/pages/media/douyin'
+    //         }
+    //     ]
+    // },
     {
         title: '其他工具',
         // icon: 'BulbOutlined',

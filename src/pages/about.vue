@@ -94,6 +94,12 @@ const data = [
         avatar: 'https://pinyin.js.org/logo.png',
         description: 'pīnyīn, 中文汉字拼音转换工具。'
     },
+    {
+        title: 'monaco-editor',
+        url: 'https://microsoft.github.io/monaco-editor',
+        avatar: 'https://microsoft.github.io/monaco-editor/9a60a3b3c5fcf6a9d2de2c28e5eaa986.svg',
+        description: '基于浏览器的代码编辑器。'
+    },
 ]
 </script>
 

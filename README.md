@@ -17,12 +17,14 @@
   - [x] Linux 命令查询
   - [x] 颜色选择器
   - [x] 图片/Base64转换
+- 文本工具
+  - [x] 字数统计
+  - [x] 文本比对
+  - [x] 拼音转换
 - 文档工具
   - [ ] 在线表格
   - [ ] Word 文档编辑器
   - [x] 富文本编辑器
-  - [x] 字数统计
-  - [x] 拼音转换
 - 作图工具
   - [x] 思维导图
   - [x] 流程图
@@ -91,6 +93,7 @@ npm run build
 - [fireworks-js](https://github.com/crashmax-dev/fireworks-js) - 一个简单的烟花库。
 - [Countable](https://github.com/RadLikeWhoa/Countable) - 一个 `JavaScript` 函数，用于统计段落、字数和字符。
 - [pinyin](https://github.com/hotoo/pinyin) - 一个 `JavaScript` 函数，用于中文汉字拼音转换。
+- [monaco-editor](https://github.com/microsoft/monaco-editor) - 基于浏览器的代码编辑器。
 
 ## 其他项目
 

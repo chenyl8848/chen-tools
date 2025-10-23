@@ -22,7 +22,5 @@ onMounted(() => {
     const svg = avatar.toString()
     imgUrl.value = avatar.toDataUri()
     console.log(svg)
-    // imgUrl.value = svg
 })
-
 </script>
