@@ -72,7 +72,7 @@ const tools = [
     },
     {
         title: '文本工具',
-        icon: 'icon-wendanggongju',
+        icon: 'icon-text',
         path: '/text',
         children: [
             {
