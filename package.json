@@ -46,6 +46,7 @@
     "qrcanvas-vue": "^3.0.0",
     "signature_pad": "^5.1.0",
     "simple-mind-map": "^0.11.0",
+    "simple-mind-map-plugin-themes": "^1.0.1",
     "splitpanes": "^4.0.4",
     "vditor": "^3.11.1",
     "vue": "^3.5.21",

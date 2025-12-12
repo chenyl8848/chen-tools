@@ -1,5 +1,6 @@
 import useToolStore from "@/store/module/tool"
 import { useRoute } from "vue-router"
+import { ref } from "vue"
 
 export const useTool = () => {
     const toolStore = useToolStore()
@@ -21,9 +22,10 @@ export const useMobile = () => {
 }
 
 export const useFullScreen = (container) => {
-
-    // let isFullScreen = document.fullscreenElement | document.webkitIsFullScreen | document.mozFullScreen | false
-    let isFullScreen = document.fullscreenEnabled && document.fullscreenElement !== null
+    const isFullScreen = ref(!!(document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement))
 
     const fullScreen = () => {
         // 进入全屏
@@ -37,8 +39,49 @@ export const useFullScreen = (container) => {
             // IE11
             container.value.msRequestFullscreen();
         }
-
     }
 
-    return [isFullScreen, fullScreen]
+    const exitFullScreen = () => {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+
+    const toggleFullScreen = () => {
+        if (isFullScreen.value) {
+            exitFullScreen();
+        } else {
+            fullScreen();
+        }
+    }
+
+    // 监听全屏变化事件
+    const handleFullScreenChange = () => {
+        isFullScreen.value = !!(document.fullscreenElement ||
+            document.webkitFullscreenElement ||
+            document.mozFullScreenElement ||
+            document.msFullscreenElement)
+    }
+
+    // 添加事件监听器
+    document.addEventListener('fullscreenchange', handleFullScreenChange)
+    document.addEventListener('webkitfullscreenchange', handleFullScreenChange)
+    document.addEventListener('mozfullscreenchange', handleFullScreenChange)
+    document.addEventListener('MSFullscreenChange', handleFullScreenChange)
+
+    // 清理事件监听器
+    const removeFullScreenListeners = () => {
+        document.removeEventListener('fullscreenchange', handleFullScreenChange)
+        document.removeEventListener('webkitfullscreenchange', handleFullScreenChange)
+        document.removeEventListener('mozfullscreenchange', handleFullScreenChange)
+        document.removeEventListener('MSFullscreenChange', handleFullScreenChange)
+    }
+
+    return [isFullScreen, fullScreen, exitFullScreen, toggleFullScreen, removeFullScreenListeners]
 }
