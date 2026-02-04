@@ -7,6 +7,9 @@ export const LOCAL_STORAGE_LOGIC_FLOW_GRAOH_DATA_KEY = 'logicFlowGraphData'
 // 代码编辑器
 export const LOCAL_STORAGE_CODE_EDITOR_VALUE_KEY = 'codeEditorValue'
 
+// 思维导图
+export const LOCAL_STORAGE_CODE_MIND_MAP_VALUE_KEY = 'mindMapValue'
+
 // 思维导图快捷键
 export const MIND_MAP_SHORTCUTS = [
   {
