@@ -1,5 +1,5 @@
 <template>
-    <div class="operation-btn">
+    <div class="mind-map-operation-pane">
         <a-button-group>
             <a-upload v-model:file-list="fileList" :show-upload-list="false" :before-upload="beforeUpload">
                 <a-tooltip title="导入" placement="bottom">
@@ -53,6 +53,10 @@
                 <a-button @click="toggleFullScreen" type="text" shape="circle" :icon="h(FullscreenOutlined)"
                     v-show="!isFullScreen" />
             </a-tooltip>
+            <a-tooltip title="退出全屏" placement="bottom">
+                <a-button @click="toggleFullScreen" type="text" shape="circle" :icon="h(FullscreenExitOutlined)"
+                    v-show="isFullScreen" />
+            </a-tooltip>
             <a-tooltip title="放大" placement="bottom">
                 <a-button @click="btnEnlargeMindMap" type="text" shape="circle" :icon="h(ZoomInOutlined)" />
             </a-tooltip>
@@ -61,10 +65,6 @@
             </a-tooltip>
             <a-tooltip title="恢复到默认的变换" placement="bottom">
                 <a-button @click="btnResetMindMap" type="text" shape="circle" :icon="h(AimOutlined)" />
-            </a-tooltip>
-            <a-tooltip title="退出全屏" placement="bottom">
-                <a-button @click="toggleFullScreen" type="text" shape="circle" :icon="h(FullscreenExitOutlined)"
-                    v-show="isFullScreen" />
             </a-tooltip>
             <a-tooltip title="快捷键" placement="bottom">
                 <a-button @click="btnShortCutKeyMindMap" type="text" shape="circle" :icon="h(QuestionCircleOutlined)" />
@@ -205,7 +205,7 @@ import { LOCAL_STORAGE_CODE_MIND_MAP_VALUE_KEY } from '@/utils/enum'
 import xmind from 'simple-mind-map/src/parse/xmind.js'
 import markdown from 'simple-mind-map/src/parse/markdown.js'
 
-const [isFullScreen, fullScreen, exitFullScreen, toggleFullScreen, removeFullScreenListeners] = useFullScreen($props.mindMapContainer)
+const [isFullScreen, fullScreen, exitFullScreen, toggleFullScreen, removeFullScreenListeners] = useFullScreen(mindMapContainer)
 
 const activeNodes = shallowRef([])
 const initMindMap = () => {
@@ -519,7 +519,7 @@ const setTheme = (theme) => {
 </script>
 
 <style lang="scss" scoped>
-.operation-btn {
+.mind-map-operation-pane {
     position: absolute;
     top: 10px;
     left: 50%;

@@ -1,14 +1,14 @@
 <template>
     <a-card>
-        <p class="title">思维导图</p>
+        <tool-header></tool-header>
         <div class="mind-map-container" ref="mindMapContainer" :class="{ fullscreen: isFullScreen.value }">
-            <MindMapControlPane v-if="mindMap && mindMapContainer" :mindMap="mindMap"
+            <MindMapOperationPane v-if="mindMap && mindMapContainer" :mindMap="mindMap"
                 :mindMapContainer="mindMapContainer" />
         </div>
     </a-card>
     <!-- 右键菜单 -->
-    <MindMapNodePane v-if="mindMap && mindMapContainer" :mindMap="mindMap" :mindMapContainer="mindMapContainer">
-    </MindMapNodePane>
+    <MindMapContextMenu v-if="mindMap && mindMapContainer" :mindMap="mindMap" :mindMapContainer="mindMapContainer">
+    </MindMapContextMenu>
 </template>
 
 <script setup>
@@ -32,8 +32,8 @@ import Themes from 'simple-mind-map-plugin-themes'
 // 注册主题
 Themes.init(MindMap)
 // 导入子组件
-import MindMapControlPane from '@/components/MindMapControlPane.vue'
-import MindMapNodePane from "@/components/MindMapNodePane.vue"
+import MindMapOperationPane from '@/components/MindMapOperationPane.vue'
+import MindMapContextMenu from "@/components/MindMapContextMenu.vue"
 
 MindMap.usePlugin(Export)
 MindMap.usePlugin(Drag)
@@ -118,11 +118,6 @@ watch(isFullScreen, (newVal) => {
 </script>
 
 <style lang="scss" scoped>
-.title {
-    font-size: 16px;
-    font-weight: 600;
-}
-
 .mind-map-container {
     position: relative;
     margin: 0;

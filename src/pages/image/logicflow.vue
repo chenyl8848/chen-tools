@@ -1,28 +1,17 @@
 <template>
     <a-card>
-        <!-- <div style="display: flex;align-items: center;">
-            <a-avatar src="/src/assets/images/flow.svg" shape="square" size="large" />
-            <p class="title">流程图</p>
-        </div> -->
-        <p class="title">流程图</p>
-        <div class="logicFlowContainer" ref="logicFlowContainerRef">
-        </div>
-        <div class="left-fixed-menu">
-            <a-card>
-                <logic-flow-node-pane :logicFlow="logicFlow"></logic-flow-node-pane>
-            </a-card>
-        </div>
-        <div class="top-fixed-menu">
-            <a-card>
-                <logic-flow-control-pane :logicFlow="logicFlow"></logic-flow-control-pane>
-            </a-card>
+        <tool-header></tool-header>
+        <div class="logic-flow-container" ref="logicFlowContainer">
+            <LogicFlowOperationPane v-if="logicFlow && logicFlowContainer" :logicFlow="logicFlow" :logicFlowContainer="logicFlowContainer">
+            </LogicFlowOperationPane>
+            <LogicFlowNodePane v-if="logicFlow && logicFlowContainer" :logicFlow="logicFlow"></LogicFlowNodePane>
         </div>
     </a-card>
 </template>
 
 <script setup>
 import LogicFlowNodePane from "@/components/LogicFlowNodePane.vue"
-import LogicFlowControlPane from "@/components/LogicFlowControlPane.vue"
+import LogicFlowOperationPane from "@/components/LogicFlowOperationPane.vue"
 import LogicFlow from "@logicflow/core"
 import { Menu, MiniMap, Snapshot, SelectionSelect } from '@logicflow/extension'
 import "@logicflow/core/lib/style/index.css"
@@ -30,7 +19,7 @@ import "@logicflow/extension/lib/style/index.css"
 import { onMounted, ref } from "vue"
 import { LOCAL_STORAGE_LOGIC_FLOW_GRAOH_DATA_KEY } from "@/utils/enum"
 
-const logicFlowContainerRef = ref()
+const logicFlowContainer = ref()
 let logicFlow = ref(null)
 
 // 流程图数据
@@ -43,7 +32,7 @@ const initLogicFlow = () => {
     LogicFlow.use(SelectionSelect)
 
     logicFlow.value = new LogicFlow({
-        container: logicFlowContainerRef.value,
+        container: logicFlowContainer.value,
         outline: true,
         // 调整节点大小
         allowResize: true,
@@ -146,57 +135,12 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss">
-.title {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.logicFlowContainer {
+<style lang="scss" scoped>
+.logic-flow-container {
+    position: relative;
     margin: 0;
     padding: 0;
     width: 100%;
     height: calc(100vh - 260px)
-}
-
-.left-fixed-menu {
-    position: fixed;
-    top: 20%;
-    z-index: 1000;
-    margin-left: 12px;
-
-    .ant-card .ant-card-body {
-        padding: 0%;
-        display: flex;
-        flex-direction: column;
-
-        .btn-block {
-            margin-top: 12px;
-        }
-    }
-
-    .ant-btn-link {
-        color: black;
-    }
-}
-
-.top-fixed-menu {
-    position: fixed;
-    top: 180px;
-    z-index: 1000;
-    right: 100px;
-
-    .ant-card .ant-card-body {
-        padding: 0%;
-        display: flex;
-
-        .btn-block {
-            margin-top: 12px;
-        }
-    }
-
-    .ant-btn-link {
-        color: black;
-    }
 }
 </style>

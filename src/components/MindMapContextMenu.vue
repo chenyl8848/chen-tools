@@ -1,5 +1,5 @@
 <template>
-    <div v-if="showContextMenu" class="context-menu"
+    <div v-if="showContextMenu" class="mind-map-context-menu"
         :style="{ zIndex: 2000, top: `${menuPosition.y}px`, left: `${menuPosition.x}px` }">
         <ul>
             <li @click="handleContextMenuBtn('addChildNode')">添加子节点</li>
@@ -84,7 +84,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.context-menu {
+.mind-map-context-menu {
     position: fixed;
     background: #fff;
     border-radius: 6px;

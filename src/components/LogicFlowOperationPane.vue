@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="logic-flow-operation-pane">
         <a-button-group>
             <a-tooltip placement="bottom">
                 <template #title>
@@ -17,13 +17,21 @@
                 <template #title>
                     <span>大小适应</span>
                 </template>
-                <a-button :icon="h(FullscreenOutlined)" @click="zoomReset" size="large" />
+                <a-button :icon="h(PushpinOutlined)" @click="zoomReset" size="large" />
             </a-tooltip>
             <a-tooltip placement="bottom">
                 <template #title>
                     <span>定位还原</span>
                 </template>
-                <a-button :icon="h(FullscreenExitOutlined)" @click="translateReset" size="large" />
+                <a-button :icon="h(AimOutlined)" @click="translateReset" size="large" />
+            </a-tooltip>
+           <a-tooltip title="全屏" placement="bottom">
+                <a-button @click="toggleFullScreen" size="large" :icon="h(FullscreenOutlined)"
+                    v-show="!isFullScreen" />
+            </a-tooltip>
+            <a-tooltip title="退出全屏" placement="bottom">
+                <a-button @click="toggleFullScreen" size="large" :icon="h(FullscreenExitOutlined)"
+                    v-show="isFullScreen" />
             </a-tooltip>
             <a-tooltip placement="bottom">
                 <template #title>
@@ -73,16 +81,22 @@
 </template>
 <script setup>
 import { h } from 'vue'
-import { ZoomInOutlined, ZoomOutOutlined, FullscreenOutlined, FullscreenExitOutlined, ArrowLeftOutlined, ArrowRightOutlined, HeatMapOutlined, PlayCircleOutlined, PauseCircleOutlined, DownloadOutlined, QuestionCircleOutlined } from '@ant-design/icons-vue'
+import { useFullScreen } from '@/hook/global'
+import { ZoomInOutlined, ZoomOutOutlined, FullscreenOutlined, FullscreenExitOutlined, AimOutlined, PushpinOutlined, ArrowLeftOutlined, ArrowRightOutlined, HeatMapOutlined, PlayCircleOutlined, PauseCircleOutlined, DownloadOutlined, QuestionCircleOutlined } from '@ant-design/icons-vue'
 
 const $props = defineProps({
-    logicFlow: Object
+    logicFlow: Object,
+    logicFlowContainer: Object
 })
 
+const {logicFlow, logicFlowContainer} = $props
+
+const [isFullScreen, fullScreen, exitFullScreen, toggleFullScreen, removeFullScreenListeners] = useFullScreen(logicFlowContainer)
+
 // onMounted(() => {
-//     $props.logicFlow && $props.logicFlow.on('history:change', ({ data: { undoAble, redoAble } }) => {
+//     logicFlow && logicFlow.on('history:change', ({ data: { undoAble, redoAble } }) => {
 //         console.log(undoAble, redoAble, "ableeeeeeeeeeeeeeeeeeeeeeeee")
-//         const graphData = $props.logicFlow.getGraphData()
+//         const graphData = logicFlow.getGraphData()
 //         const nodes = graphData.nodes
 //         console.log(nodes, graphData, "graphhhhhhhhhhhhhhhh")
 //     })
@@ -90,32 +104,32 @@ const $props = defineProps({
 
 // 放大
 const zoomIn = () => {
-    $props.logicFlow.zoom(true)
+    logicFlow.zoom(true)
 }
 
 // 缩小
 const zoomOut = () => {
-    $props.logicFlow.zoom(false)
+    logicFlow.zoom(false)
 }
 
 // 大小适应
 const zoomReset = () => {
-    $props.logicFlow.resetZoom()
+    logicFlow.resetZoom()
 }
 
 // 定位还原
 const translateReset = () => {
-    $props.logicFlow.resetTranslate()
+    logicFlow.resetTranslate()
 }
 
 // 上一步
 const undo = () => {
-    $props.logicFlow.undo()
+    logicFlow.undo()
 }
 
 // 下一步
 const redo = () => {
-    $props.logicFlow.redo()
+    logicFlow.redo()
 }
 
 // 小地图
@@ -154,8 +168,16 @@ const showEdgeAnimation = () => {
 
 // 下载
 const download = () => {
-    $props.logicFlow.getSnapshot()
+    logicFlow.getSnapshot()
 }
 
 </script>
-<style scoped></style>
+<style lang="css" scoped>
+.logic-flow-operation-pane {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+</style>

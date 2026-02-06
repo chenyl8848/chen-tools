@@ -1,8 +1,8 @@
 <template>
     <a-card>
         <tool-header />
-        <div ref="wordContainerRef" class="word-container">
-
+        <div ref="wordContainer" class="word-container">
+            <WordOperationPane v-if="word && wordContainer" :word="word" :wordContainer="wordContainer"></WordOperationPane>
         </div>
     </a-card>
 </template>
@@ -12,12 +12,13 @@ import { onMounted, ref } from 'vue'
 import Editor from '@hufe921/canvas-editor'
 import docxPlugin from '@hufe921/canvas-editor-plugin-docx'
 import { RowFlex } from '@hufe921/canvas-editor'
+import WordOperationPane from '@/components/WordOperationPane.vue'
 
-const wordContainerRef = ref()
+const wordContainer = ref()
 const word = ref()
 
 const initWord = () => {
-    word.value = new Editor(wordContainerRef.value,
+    word.value = new Editor(wordContainer.value,
         {
             header: [
                 {
@@ -301,6 +302,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .word-container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,8 +1,10 @@
 <template>
-  <div v-for="(item, key) in nodes" :key="key" class="node" @mousedown="dragNode(item)">
-    <div v-html="item.svg"></div>
-    <div class="node-label">
-      {{ item.label }}
+  <div class="logic-flow-node-pane">
+    <div v-for="(item, key) in nodes" :key="key" class="node" @mousedown="dragNode(item)">
+      <div v-html="item.svg"></div>
+      <div class="node-label">
+        {{ item.label }}
+      </div>
     </div>
   </div>
 </template>
@@ -64,30 +66,41 @@ const nodes = [
 ]
 </script>
 
-<style scoped>
-.node {
-  display: inline-block;
-  box-sizing: border-box;
-  padding: 0px;
-  margin: 5px;
-  color: #fff;
-  cursor: pointer;
-  height: 75px;
-}
+<style lang="scss" scoped>
+.logic-flow-node-pane {
+  position: absolute;
+  top: 20px;
+  z-index: 1000;
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-.node .node-label {
-  font-size: 14px;
-  color: #000000;
-  /* margin-top: 8px; */
-  text-align: center;
-  /* 文字不能被选中 */
-  /* Safari */
-  -webkit-user-select: none;
-  /* Firefox */
-  -moz-user-select: none;
-  /* IE/Edge */
-  -ms-user-select: none;
-  /* 标准语法 */
-  user-select: none;
+  .node {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 5px;
+    color: #fff;
+    cursor: pointer;
+    // height: 75px;
+    height: calc(10vh - 20px); /* 动态计算高度 */
+  }
+
+  .node .node-label {
+    font-size: 14px;
+    color: #000000;
+    /* margin-top: 8px; */
+    text-align: center;
+    /* 文字不能被选中 */
+    /* Safari */
+    -webkit-user-select: none;
+    /* Firefox */
+    -moz-user-select: none;
+    /* IE/Edge */
+    -ms-user-select: none;
+    /* 标准语法 */
+    user-select: none;
+  }
 }
 </style>
