@@ -11,6 +11,7 @@
 import { onMounted, ref } from 'vue'
 import Editor from '@hufe921/canvas-editor'
 import docxPlugin from '@hufe921/canvas-editor-plugin-docx'
+import floatingToolbarPlugin from '@hufe921/canvas-editor-plugin-floating-toolbar'
 import { RowFlex } from '@hufe921/canvas-editor'
 import WordOperationPane from '@/components/WordOperationPane.vue'
 
@@ -273,6 +274,7 @@ const initWord = () => {
         })
 
     word.value.use(docxPlugin)
+    word.value.use(floatingToolbarPlugin)
 
     word.value.register.contextMenuList([
         {
@@ -296,7 +298,6 @@ const initWord = () => {
 
 onMounted(() => {
     initWord()
-    console.log(word.value)
 })
 </script>
 

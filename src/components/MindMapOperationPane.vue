@@ -23,7 +23,7 @@
                         <a-form-item label="地址" name="linkAddress">
                             <a-input v-model:value="linkForm.linkAddress" allow-clear>
                                 <template #addonBefore>
-                                    <a-select v-model:value="linkForm.linkAddressBefore" style="width: 90px">
+                                    <a-select v-model:value="linkForm.linkAddressPrefix" style="width: 90px">
                                         <a-select-option value="http://">http://</a-select-option>
                                         <a-select-option value="https://">https://</a-select-option>
                                     </a-select>
@@ -405,11 +405,11 @@ const linkPopover = ref(false)
 const linkForm = reactive({
     linkName: '',
     linkAddress: '',
-    linkAddressBefore: 'https://',
+    linkAddressPrefix: 'https://',
 })
 const setLink = () => {
     activeNodes.value.forEach(node => {
-        node.setHyperlink(linkForm.linkAddressBefore + linkForm.linkAddress, linkForm.linkName)
+        node.setHyperlink(linkForm.linkAddressPrefix + linkForm.linkAddress, linkForm.linkName)
     })
     console.log('linkForm', linkForm)
     linkPopover.value = false

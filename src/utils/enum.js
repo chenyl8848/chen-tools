@@ -119,3 +119,42 @@ export const MIND_MAP_SHORTCUTS = [
     ]
   }
 ]
+
+// Word 字号对照表
+export const WORD_FONT_SIZE_MAP = [
+  { name: '初号', value: 42 },
+  { name: '小初', value: 36 },
+  { name: '一号', value: 26 },
+  { name: '二号', value: 22 },
+  { name: '小二', value: 18 },
+  { name: '三号', value: 16 },
+  { name: '小三', value: 15 },
+  { name: '四号', value: 14 },
+  { name: '小四', value: 12 },
+  { name: '五号', value: 10.5 },
+  { name: '小五', value: 9 },
+  { name: '六号', value: 7.5 },
+  { name: '小六', value: 6.5 },
+  { name: '七号', value: 5.5 },
+  { name: '八号', value: 5 },
+]
+
+// Word 字体对照表
+export const WORD_FONT_MAP = [
+  { name: '微软雅黑', value: 'Microsoft YaHei' },
+  { name: '华文宋体', value: 'SimSun' },
+  { name: '华文黑体', value: 'SimHei' },
+  { name: '华文仿宋', value: 'FangSong' },
+  { name: '华文琥珀', value: 'STHupo' },
+  { name: '华文楷体', value: 'KaiTi' },
+  { name: '华文隶书', value: 'LiSu' },
+  { name: '华文新魏', value: 'STXinwei' },
+  { name: '华文行楷', value: 'STXingkai' },
+  { name: '华文中宋', value: 'STZhongsong' },
+  { name: '华文彩云', value: 'STCaiyun' },
+  { name: 'Arial', value: 'Arial' },
+  { name: 'Segoe UI', value: 'Segoe UI' },
+  { name: 'Ink Free', value: 'Ink Free' },
+  { name: 'Fantasy', value: 'fantasy' },
+  // 移除或修正 Fantasy 的映射
+];
