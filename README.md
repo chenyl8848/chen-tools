@@ -21,6 +21,7 @@
   - [x] 字数统计
   - [x] 文本比对
   - [x] 拼音转换
+  - [x] 汉字笔画
 - 文档工具
   - [ ] 在线表格
   - [ ] Word 文档编辑器
@@ -94,6 +95,7 @@ npm run build
 - [Countable](https://github.com/RadLikeWhoa/Countable) - 一个 `JavaScript` 函数，用于统计段落、字数和字符。
 - [pinyin](https://github.com/hotoo/pinyin) - 一个 `JavaScript` 函数，用于中文汉字拼音转换。
 - [monaco-editor](https://github.com/microsoft/monaco-editor) - 基于浏览器的代码编辑器。
+- [hanzi-writer](https://github.com/chanind/hanzi-writer) - 用于展示汉字笔画顺序和交互式书写练习的 `JavaScript` 库，支持简/繁体字、调节播放速度、循环方式、实时检查笔画正确性等功能。
 
 ## 其他项目
 

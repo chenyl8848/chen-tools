@@ -99,6 +99,14 @@ const tools = [
                 path: '/pinyin',
                 component: '/pages/text/pinyin'
             },
+            {
+                title: '汉字笔画',
+                description: "根据汉字书写时按照笔画顺序的特征，可以播放正确笔画顺序的描边动画和练习测试。",
+                icon: 'icon-strokeorder',
+                favicon: '/images/strokeorder.svg',
+                path: '/strokeorder',
+                component: '/pages/text/strokeorder'
+            },
         ]
     },
     {

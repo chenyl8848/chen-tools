@@ -39,6 +39,7 @@
     "canvas-confetti": "^1.9.3",
     "cropperjs": "^2.0.1",
     "crypto-js": "^4.2.0",
+    "hanzi-writer": "^3.7.3",
     "highlight.js": "^11.11.1",
     "jwt-decode": "^4.0.0",
     "markdown-it": "^14.1.0",
