@@ -37,7 +37,7 @@
     "ant-design-vue": "^4.2.3",
     "axios": "^1.7.7",
     "canvas-confetti": "^1.9.3",
-    "cropperjs": "^2.0.1",
+    "cropperjs": "^1.6.2",
     "crypto-js": "^4.2.0",
     "hanzi-writer": "^3.7.3",
     "highlight.js": "^11.11.1",

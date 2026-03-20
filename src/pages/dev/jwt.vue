@@ -44,6 +44,7 @@
 import jwt from '@/utils/jwt'
 import { computed, ref } from 'vue'
 import { copyText } from '@/utils/common'
+import { message } from 'ant-design-vue'
 
 const header = ref(
     JSON.stringify({ "alg": "HS256", "typ": "JWT" })
@@ -82,19 +83,45 @@ const handleInputPayload = (event) => {
 const secret = ref('拳打南山敬老院，脚踢北海幼儿园。')
 const token = ref('')
 
-token.value = jwt.generateToken(secret.value, JSON.parse(header.value), JSON.parse(payload.value))
+// 初始化token，添加错误处理
+try {
+    token.value = jwt.generateToken(secret.value, JSON.parse(header.value), JSON.parse(payload.value))
+} catch (error) {
+    console.error('JWT初始化失败:', error)
+    token.value = ''
+}
 
 const generate = () => {
-    token.value = jwt.generateToken(secret.value, JSON.parse(header.value), JSON.parse(payload.value))
+    try {
+        const parsedHeader = JSON.parse(header.value)
+        const parsedPayload = JSON.parse(payload.value)
+        token.value = jwt.generateToken(secret.value, parsedHeader, parsedPayload)
+        message.success('JWT生成成功')
+    } catch (error) {
+        message.error('JWT生成失败：请检查Header和Payload是否为有效的JSON格式')
+        console.error('JWT生成错误:', error)
+        token.value = ''
+    }
 }
 
 const parse = () => {
-    const { parseHeader, parsePayload } = jwt.parseToken(token.value)
-    header.value = parseHeader
-    payload.value = parsePayload
+    try {
+        const { parseHeader, parsePayload } = jwt.parseToken(token.value)
+        if (parseHeader && parsePayload) {
+            header.value = JSON.stringify(parseHeader, null, 2)
+            payload.value = JSON.stringify(parsePayload, null, 2)
+            message.success('JWT解析成功')
+        } else {
+            message.error('JWT解析失败：无效的Token格式')
+        }
+    } catch (error) {
+        message.error('JWT解析失败：Token格式错误或已损坏')
+        console.error('JWT解析错误:', error)
+    }
 }
 
 const clear = () => {
     token.value = ''
+    message.info('已清空Token')
 }
 </script>

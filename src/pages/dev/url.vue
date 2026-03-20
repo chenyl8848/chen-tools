@@ -27,16 +27,29 @@
 <script setup>
 import { ref } from 'vue'
 import { copyText } from '@/utils/common'
+import { message } from 'ant-design-vue'
 
 const input = ref('')
 const result = ref('')
 
 const encode = () => {
-    result.value = encodeURIComponent(input.value)
+    try {
+        result.value = encodeURIComponent(input.value)
+    } catch (error) {
+        message.error('编码失败：输入内容包含无效字符')
+        console.error('URL编码错误:', error)
+        result.value = ''
+    }
 }
 
 const decode = () => {
-    result.value = decodeURIComponent(input.value)
+    try {
+        result.value = decodeURIComponent(input.value)
+    } catch (error) {
+        message.error('解码失败：输入内容不是有效的URL编码')
+        console.error('URL解码错误:', error)
+        result.value = ''
+    }
 }
 
 const clear = () => {
