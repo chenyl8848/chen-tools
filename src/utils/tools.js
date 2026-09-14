@@ -67,6 +67,14 @@ const tools = [
                 favicon: '/images/base64.svg',
                 path: '/base64',
                 component: '/pages/dev/base64'
+            },
+            {
+                title: '随机字符串生成',
+                description: '自定义长度和字符类型，批量生成随机字符串',
+                icon: 'icon-random',
+                favicon: '/images/random.svg',
+                path: '/random',
+                component: '/pages/dev/random'
             }
         ]
     },

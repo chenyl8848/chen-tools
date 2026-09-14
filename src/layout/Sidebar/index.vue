@@ -6,12 +6,14 @@
         </router-link>
         <!-- <img src="/src/assets/images/chen-tools.png" @click="goHome" /> -->
     </div>
-    <a-menu mode="inline" v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys">
+    <a-menu mode="inline" class="sidebar-menu" v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys">
         <template v-for="menu in toolStore.menus">
             <template v-if="!menu.children && !menu.isHidden">
                 <a-menu-item :key="menu.path" @click="routerJump(menu)">
                     <icon-font :type="menu.icon" />
-                    <span>{{ menu.title }}</span>
+                    <a-tooltip placement="right" :title="menu.title" :open="activeTooltip === menu.path">
+                        <span @mouseenter="showTitleTooltip($event, menu.path)" @mouseleave="hideTitleTooltip">{{ menu.title }}</span>
+                    </a-tooltip>
                 </a-menu-item>
             </template>
             <template v-if="menu.children && menu.children.length > 0 && !menu.isHidden">
@@ -25,9 +27,9 @@
                     <template v-for="subMenu in menu.children">
                         <a-menu-item :key="subMenu.path" v-if="!subMenu.isHidden" @click="routerJump(subMenu)">
                             <icon-font :type="subMenu.icon" />
-                            <span>
-                                {{ subMenu.title }}
-                            </span>
+                            <a-tooltip placement="right" :title="subMenu.title" :open="activeTooltip === subMenu.path">
+                                <span @mouseenter="showTitleTooltip($event, subMenu.path)" @mouseleave="hideTitleTooltip">{{ subMenu.title }}</span>
+                            </a-tooltip>
                         </a-menu-item>
                     </template>
                 </a-sub-menu>
@@ -50,6 +52,18 @@ import { getParentTool } from '@/utils/tools'
 
 const openKeys = ref([''])
 const selectedKeys = ref([])
+
+// 仅当标题被省略号截断时，hover 才弹出气泡显示全名；未截断的短标题不弹
+const activeTooltip = ref('')
+const showTitleTooltip = (e, key) => {
+    const content = e.currentTarget.closest('.ant-menu-title-content') || e.currentTarget
+    if (content.scrollWidth > content.clientWidth) {
+        activeTooltip.value = key
+    }
+}
+const hideTitleTooltip = () => {
+    activeTooltip.value = ''
+}
 
 const $router = useRouter()
 const routerJump = (menu) => {
@@ -101,5 +115,10 @@ watch(() => $route.path, (newValue) => {
 
 .ant-menu-title-content {
     font-size: 14px;
+}
+
+// 侧边栏长标题超出部分直接裁掉，不显示省略号“...”；超长时由 hover 气泡显示全名
+.sidebar-menu .ant-menu-title-content {
+    text-overflow: clip !important;
 }
 </style>
