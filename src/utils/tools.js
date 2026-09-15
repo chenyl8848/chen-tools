@@ -275,7 +275,7 @@ const tools = [
             },
             {
                 title: '亲戚称谓计算器',
-                description: '大转盘/九宫格/老虎机',
+                description: '算出「爸爸的妈妈」这类关系该怎么称呼，也支持按称谓反查关系链',
                 icon: 'icon-jisuanqilishuai',
                 favicon: '/images/calculator.svg',
                 path: '/relatives',

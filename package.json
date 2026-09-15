@@ -48,6 +48,7 @@
     "pinia": "^2.2.2",
     "pinyin": "^4.0.0",
     "qrcanvas-vue": "^3.0.0",
+    "relationship.js": "^1.2.9",
     "signature_pad": "^5.1.0",
     "simple-mind-map": "^0.11.0",
     "simple-mind-map-plugin-themes": "^1.0.1",

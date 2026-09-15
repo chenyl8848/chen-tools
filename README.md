@@ -23,8 +23,8 @@
   - [x] 拼音转换
   - [x] 汉字笔画
 - 文档工具
-  - [ ] 在线表格
-  - [ ] Word 文档编辑器
+  - [x] 在线表格
+  - [x] Word 文档编辑器
   - [x] 富文本编辑器
 - 作图工具
   - [x] 思维导图
@@ -40,9 +40,9 @@
 - 媒体工具
   - [ ] 抖音去水印下载
 - 其他工具
-  - [ ] 抽奖
-  - [ ] 亲戚称谓计算器
-  - [ ] 烟花
+  - [x] 抽奖
+  - [x] 亲戚称谓计算器
+  - [x] 烟花
   - [ ] 完结撒花
 
 ## 本地开发
@@ -96,6 +96,7 @@ npm run build
 - [pinyin](https://github.com/hotoo/pinyin) - 一个 `JavaScript` 函数，用于中文汉字拼音转换。
 - [monaco-editor](https://github.com/microsoft/monaco-editor) - 基于浏览器的代码编辑器。
 - [hanzi-writer](https://github.com/chanind/hanzi-writer) - 用于展示汉字笔画顺序和交互式书写练习的 `JavaScript` 库，支持简/繁体字、调节播放速度、循环方式、实时检查笔画正确性等功能。
+- [relationship.js](https://github.com/mumuy/relationship) - 中国亲戚关系计算器，支持称谓计算、关系链反查和关系合称。
 
 ## 其他项目
 
