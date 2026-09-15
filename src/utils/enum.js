@@ -10,6 +10,9 @@ export const LOCAL_STORAGE_CODE_EDITOR_VALUE_KEY = 'codeEditorValue'
 // 思维导图
 export const LOCAL_STORAGE_CODE_MIND_MAP_VALUE_KEY = 'mindMapValue'
 
+// 抽奖记录
+export const LOCAL_STORAGE_LOTTERY_HISTORY_KEY = 'lotteryHistory'
+
 // 思维导图快捷键
 export const MIND_MAP_SHORTCUTS = [
   {
