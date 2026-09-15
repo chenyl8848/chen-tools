@@ -704,10 +704,24 @@ const btnPrintWord = () => {
 
 <style lang="css" scoped>
 .word-operation-pane {
-    position: absolute;
+    /* 吸顶：父级是卡片 body，它的高度等于整篇文档，所以能一直停到文档末尾。
+       页面滚动在 window 上（布局链上没有 overflow 容器），sticky 才生效 */
+    position: sticky;
     top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
     z-index: 1000;
+    /* 白底 + 细线压住从下面划过去的纸张 */
+    background-color: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    /* 这一排按钮是 nowrap，窄窗口放不下时横向滚动，而不是让两头的按钮点不到 */
+    display: flex;
+    overflow-x: auto;
+}
+
+/* 按钮组居中不能用 justify-content: center——它把溢出的内容往两头各推一半，
+   左端跑到滚动区以外就再也滚不回来了。auto 外边距只在有多余空间时才吸收空间，
+   空间不足自动归零，按钮组回到起点、溢出全落在右端，滚动条拿得到 */
+.word-operation-pane > .ant-btn-group {
+    flex: none;
+    margin: 0 auto;
 }
 </style>

@@ -1,44 +1,83 @@
 <template>
     <a-card>
         <tool-header />
-        <div ref="wordContainer" class="word-container">
-            <WordOperationPane v-if="word && wordContainer" :word="word" :wordContainer="wordContainer"></WordOperationPane>
-        </div>
+        <!-- 工具栏不能留在 .word-container 里：那是 flex 行，它一旦参与布局就会挤占 794px 的纸张宽度 -->
+        <WordOperationPane v-if="word && wordContainer" :word="word" :wordContainer="wordContainer"></WordOperationPane>
+        <div ref="wordContainer" class="word-container"></div>
     </a-card>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import Editor from '@hufe921/canvas-editor'
 import docxPlugin from '@hufe921/canvas-editor-plugin-docx'
 import floatingToolbarPlugin from '@hufe921/canvas-editor-plugin-floating-toolbar'
 import { RowFlex } from '@hufe921/canvas-editor'
 import WordOperationPane from '@/components/WordOperationPane.vue'
+import { LOCAL_STORAGE_WORD_EDITOR_VALUE_KEY } from '@/utils/enum'
 
 const wordContainer = ref()
 const word = ref()
 
+// 打开时优先用上次保存的内容，没有才用示例文档
+const savedContent = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WORD_EDITOR_VALUE_KEY)) || {
+    header: [
+        {
+            value: 'Header',
+            rowFlex: RowFlex.CENTER
+        }
+    ],
+    main: [
+        {
+            value: 'Hello World'
+        }
+    ],
+    footer: [
+        {
+            value: 'canvas-editor',
+            size: 12
+        }
+    ]
+}
+
+let saveTimer = null
+const writeContent = () => {
+    localStorage.setItem(LOCAL_STORAGE_WORD_EDITOR_VALUE_KEY, JSON.stringify(word.value.command.getValue().data))
+}
+
+// contentChange 每次敲字都触发，直接落盘等于每输入一个字就整篇序列化 + 一次同步写，
+// localStorage 的写是阻塞的，长文档会拖慢输入。攒一下再写
+const saveContent = () => {
+    clearTimeout(saveTimer)
+    saveTimer = setTimeout(writeContent, 300)
+}
+
+// 上下留白，和下面 options 里的 maskMargin 取同一组值
+const CURSOR_MASK_TOP = 60
+const CURSOR_MASK_BOTTOM = 30
+
+// 库只有方向键、定位这类路径会把光标滚进可视区（Cursor.moveCursorToVisible），
+// 敲字不在其中：input() 只调 draw.render。内容长过一屏后，光标会一直往视口下方跑、
+// 换页也不跟随。这里在每次内容提交后自己补上。
+// 光标是库画在容器里的真实 DOM（.ce-cursor），top 已经按文档坐标算好，
+// 直接量它和视口的相对位置，比照着库内部再算一遍坐标可靠。
+const scrollCursorIntoView = () => {
+    const cursor = wordContainer.value?.querySelector('.ce-cursor')
+    if (!cursor) return
+    const { top, bottom } = cursor.getBoundingClientRect()
+    // 光标被隐藏时 rect 全是 0，不挡住就会被当成「光标跑到视口上方」而误滚
+    if (!top && !bottom) return
+    const viewportBottom = window.innerHeight - CURSOR_MASK_BOTTOM
+    if (bottom > viewportBottom) {
+        window.scrollBy(0, bottom - viewportBottom)
+    } else if (top < CURSOR_MASK_TOP) {
+        window.scrollBy(0, top - CURSOR_MASK_TOP)
+    }
+}
+
 const initWord = () => {
     word.value = new Editor(wordContainer.value,
-        {
-            header: [
-                {
-                    value: 'Header',
-                    rowFlex: RowFlex.CENTER
-                }
-            ],
-            main: [
-                {
-                    value: 'Hello World'
-                }
-            ],
-            footer: [
-                {
-                    value: 'canvas-editor',
-                    size: 12
-                }
-            ]
-        },
+        savedContent,
         {
             "mode": "edit",
             "locale": "zhCN",
@@ -276,6 +315,12 @@ const initWord = () => {
     word.value.use(docxPlugin)
     word.value.use(floatingToolbarPlugin)
 
+    // contentChange 在 render 之后的 nextTick 里触发，此时光标 DOM 的位置已经更新
+    word.value.listener.contentChange = () => {
+        scrollCursorIntoView()
+        saveContent()
+    }
+
     word.value.register.contextMenuList([
         {
             name: "导出文档",
@@ -299,13 +344,30 @@ const initWord = () => {
 onMounted(() => {
     initWord()
 })
+
+onUnmounted(() => {
+    // 路由切走时可能还有改动卡在 300ms 的窗口里，同步补一次
+    if (saveTimer) {
+        clearTimeout(saveTimer)
+        writeContent()
+    }
+})
 </script>
 
 <style lang="scss" scoped>
 .word-container {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    // 纸张底色，照抄官方 demo 的 body 背景；页面之间和四周留出灰底才看得出「一张张纸」
+    background-color: #f2f4f7;
+    // 库在最后一张纸下面留了 pageGap(20px) 外边距，顶部补上同样的留白，纸张上下才对称
+    padding: 20px 0 0;
+
+    // 每页是 .ce-page-container 里一个独立的 canvas，页面本身白底、页间透明，
+    // 不加阴影时白纸和容器底色连成一片。阴影值同样照抄官方 demo 的 src/style.css
+    :deep(.ce-page-container canvas) {
+        box-shadow: rgb(158 161 165 / 40%) 0 2px 12px 0;
+    }
 }
 </style>

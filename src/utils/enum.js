@@ -13,6 +13,9 @@ export const LOCAL_STORAGE_CODE_MIND_MAP_VALUE_KEY = 'mindMapValue'
 // 抽奖记录
 export const LOCAL_STORAGE_LOTTERY_HISTORY_KEY = 'lotteryHistory'
 
+// 文档编辑器内容
+export const LOCAL_STORAGE_WORD_EDITOR_VALUE_KEY = 'wordEditorValue'
+
 // 思维导图快捷键
 export const MIND_MAP_SHORTCUTS = [
   {
