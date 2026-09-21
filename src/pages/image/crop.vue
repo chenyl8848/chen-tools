@@ -4,7 +4,7 @@
         <splitpanes>
             <pane size="75">
                 <div class="crop-container">
-                    <img :src="imageUrl" alt="待裁剪图片" ref="imageRef" />
+                    <img :src="DEFAULT_IMAGE" alt="待裁剪图片" ref="imageRef" />
                 </div>
                 <div class="control-panel mgt-20">
                     <a-space class="mgt-10" wrap>
@@ -18,10 +18,10 @@
                         </a-radio-group>
                         <a-tooltip title="上传" placement="bottom">
                             <a-upload v-model:file-list="fileList" list-type="picture" :show-upload-list="false"
-                                :before-upload="beforeUpload" :disabled="loading">
+                                accept="image/*" :before-upload="beforeUpload" :disabled="loading">
                                 <a-button type="primary" :loading="loading">
                                     <upload-outlined v-if="!loading" />
-                                    <!-- {{ loading ? '上传中...' : '上传图片' }} -->
+                                    上传图片
                                 </a-button>
                             </a-upload>
                         </a-tooltip>
@@ -66,7 +66,7 @@
             </pane>
             <pane>
                 <div class="preview-container">
-                    <a-image :width="250" :src="previewImageUrl" :fallback="'/public/images/tools.png'" />
+                    <a-image :width="250" :src="previewImageUrl" :fallback="'/images/tools.png'" />
                 </div>
             </pane>
         </splitpanes>
@@ -75,17 +75,28 @@
 
 <script setup>
 import Cropper from 'cropperjs'
-import { onMounted, onUnmounted, ref, h } from 'vue'
+import { onMounted, onUnmounted, ref, shallowRef, h } from 'vue'
 import { Splitpanes, Pane } from 'splitpanes'
 import { message } from 'ant-design-vue'
+import { useThrottleFn } from '@vueuse/core'
+import { downloadBase64Image } from '@/utils/common'
 import 'splitpanes/dist/splitpanes.css'
 import 'cropperjs/dist/cropper.css'
 import { ZoomInOutlined, ZoomOutOutlined, ArrowLeftOutlined, ArrowRightOutlined, ArrowUpOutlined, ArrowDownOutlined, RotateRightOutlined, RotateLeftOutlined, LockOutlined, UnlockOutlined, ReloadOutlined, DownloadOutlined } from '@ant-design/icons-vue'
 
-const imageUrl = ref('/public/images/tools.png')
+// 预览跑缩略图：cropperjs 的 maxWidth/maxHeight 会同时压住源重绘和输出画布，这是拖拽不卡的开关
+const PREVIEW_OPTIONS = { maxWidth: 480, maxHeight: 480, fillColor: '#fff', imageSmoothingQuality: 'high' }
+// 导出跑原图：长边封顶 4096，再大 canvas 面积会越界（Safari 约 16.7MP），toDataURL 只会拿到空白
+const EXPORT_OPTIONS = { maxWidth: 4096, maxHeight: 4096, fillColor: '#fff', imageSmoothingQuality: 'high' }
+
+// 底图的 src 只能由 cropperjs 独家写：它 replace() 时改这个属性，destroy() 时又回写成初始值，
+// 再叠加 Vue 的响应式绑定就必然打架，所以这里给死值、不给 ref
+const DEFAULT_IMAGE = '/images/tools.png'
+
 const imageRef = ref()
-const cropper = ref()
-const previewImageUrl = ref('/public/images/tools.png')
+// Cropper 是有状态的重型实例，套深响应式代理只有开销没有收益
+const cropper = shallowRef()
+const previewImageUrl = ref('/images/tools.png')
 const fileList = ref([])
 // 默认1:1比例
 const aspectRatio = ref(4 / 3)
@@ -113,10 +124,9 @@ const initCropper = () => {
         cropBoxMovable: true,
         cropBoxResizable: true,
         toggleDragModeOnDblclick: true,
-        // 添加 crop 事件监听
-        crop: (event) => {
-            updatePreview()
-        },
+        // zoom / move / rotate 都会经 renderCanvas → output() 派发 crop，所以一处监听就够；
+        // 拖拽时 crop 触发极密，节流后才不至于每帧重编码一次 PNG
+        crop: updatePreviewThrottled,
         ready: () => {
             // 初始化完成后立即更新一次预览
             updatePreview()
@@ -155,14 +165,11 @@ const beforeUpload = (file) => {
     const reader = new FileReader()
     reader.onload = (e) => {
         const base64String = e.target.result
-        imageUrl.value = base64String
-        console.log('base64String', base64String)
 
         // 重置预览图和裁剪状态
         previewImageUrl.value = base64String
 
-        // 如果有cropper实例，替换图片源并重置裁剪框
-        console.log('cropper', cropper.value)
+        // 底图的 src 归 cropperjs 管，这里只走它的 API，不要再去写 img 的 src
         if (cropper.value) {
             cropper.value.replace(base64String)
             // cropper.value.reset()
@@ -185,19 +192,15 @@ const beforeUpload = (file) => {
 }
 
 const download = () => {
-    try {
-        const link = document.createElement('a')
-        link.href = previewImageUrl.value
-        const timestamp = new Date().getTime()
-        link.download = `cropped-image-${timestamp}.png`
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-        message.success('图片下载成功！')
-    } catch (error) {
-        console.error('保存错误:', error)
-        message.error('图片保存失败，请重试！')
+    const canvas = cropper.value?.getCroppedCanvas(EXPORT_OPTIONS)
+
+    if (!canvas) {
+        message.warning('图片还没准备好，请稍后再试！')
+        return
     }
+
+    downloadBase64Image(canvas.toDataURL('image/png'), `cropped-image-${Date.now()}.png`)
+    message.success(`已导出 ${canvas.width} × ${canvas.height} 图片`)
 }
 
 
@@ -233,8 +236,8 @@ const enableCrop = () => {
 
 const resetCrop = () => {
     if (cropper.value) {
+        // reset() 内部会走 renderCropBox → output → crop 事件，预览会跟着更新，不用手动赋值
         cropper.value.reset()
-        previewImageUrl.value = imageUrl.value
     }
 }
 
@@ -242,13 +245,7 @@ const updatePreview = () => {
     if (!cropper.value) return
 
     try {
-        const canvas = cropper.value.getCroppedCanvas({
-            width: 800,
-            height: 800,
-            fillColor: '#fff',
-            imageSmoothingEnabled: true,
-            imageSmoothingQuality: 'high'
-        })
+        const canvas = cropper.value.getCroppedCanvas(PREVIEW_OPTIONS)
 
         if (canvas) {
             previewImageUrl.value = canvas.toDataURL('image/png')
@@ -258,15 +255,15 @@ const updatePreview = () => {
     }
 }
 
+// 节流而非防抖：防抖会让整个拖拽过程预览静止，节流才跟手。
+// trailing 必须显式给 true（useThrottleFn 的默认是 false），否则松手前最后一段位移不会补渲染
+const updatePreviewThrottled = useThrottleFn(updatePreview, 80, true, true)
+
 onMounted(() => {
-    // 确保图片加载完成后再初始化cropper
-    if (imageRef.value && imageRef.value.complete) {
-        initCropper()
-    } else {
-        imageRef.value.onload = () => {
-            initCropper()
-        }
-    }
+    // 不要在这里挂 img.onload：src 一变它就会再跑一次 initCropper()，而 initCropper() 里的
+    // destroy() 会把 src 回写成原始值，底图随即被还原成默认图片。
+    // cropperjs 内部会自己 clone 一张图监听 load，本来就会等解码完成，这里直接初始化即可
+    initCropper()
 })
 
 onUnmounted(() => {
