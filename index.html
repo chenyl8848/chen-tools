@@ -5,6 +5,9 @@
     <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
     <link rel="icon" type="image/svg+xml" href="/public/images/logo.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Excalidraw 的字体基址。必须早于模块求值设置，放页面里会因 import 提升失效。
+         版本号跟 package.json 的 @excalidraw/excalidraw 对齐，升级版本时要同步改这里 -->
+    <script>window.EXCALIDRAW_ASSET_PATH = 'https://registry.npmmirror.com/@excalidraw/excalidraw/0.18.1/files/dist/prod/'</script>
     <title>Chen Tools</title>
   </head>
   <body>
